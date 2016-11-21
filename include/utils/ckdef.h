@@ -18,6 +18,8 @@
 
 #define CAPI_CKTRADER extern "C"
 
+#define CK_CONTRACT_SYMBOL_DELM ","
+
 /*event type*/
 #define EVENT_INFO "eInfo"
 #define EVENT_STOCK_HQ "eStockHq"

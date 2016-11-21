@@ -207,7 +207,7 @@ struct CK_EXPORTS ContractData
 
 struct CK_EXPORTS SubscribeReq
 {
-	std::string symbol;
+	std::string symbol;//以逗号分隔，订阅多合约
 	std::string exchange;
 	std::string productClass;
 	std::string currency;

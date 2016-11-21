@@ -47,7 +47,7 @@ bool StrategyAtrRsi::onInit()
 	pEvent->registerHandler(EVENT_TIMER, std::bind(&StrategyAtrRsi::timer, this, std::placeholders::_1));
 
 	SubscribeReq sub;
-	sub.symbol = "rb1701";
+	sub.symbol = "rb1701,IF1703";
 	pGateway->subscribe(sub);
 	std::cout << "rsi:: init"<<std::endl;
 	return true;

@@ -370,10 +370,25 @@ namespace cktrader {
 	{
 		if (loginStatus)
 		{
-			subscribeMarketData(subscribeReq.symbol);
-		}
+			std::string s = subscribeReq.symbol;
+			size_t last = 0;
+			size_t index = s.find_first_of(CK_CONTRACT_SYMBOL_DELM, last);
+			while (index != std::string::npos)
+			{
+				std::string symbol = s.substr(last, index - last);
+				subscribeMarketData(symbol);
+				subscribedSymbols->insert(symbol);
 
-		subscribedSymbols->insert(subscribeReq.symbol);
+				last = index + 1;
+				index = s.find_first_of(CK_CONTRACT_SYMBOL_DELM, last);
+			}
+			if (index - last>0)
+			{
+				std::string symbol = s.substr(last, index - last);
+				subscribeMarketData(symbol);
+				subscribedSymbols->insert(symbol);
+			}
+		}
 	}
 
 	int CtpMd::close()
