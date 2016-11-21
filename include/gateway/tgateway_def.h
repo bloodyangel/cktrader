@@ -14,6 +14,7 @@ namespace cktrader {
 class IGateway
 {
 public:
+	//下层数据接口主动调用函数
 	virtual void onTick(TickData& tick)=0;
 	virtual void onTrade(TradeData& trade)=0;
 	virtual void onOrder(OrderData& order)=0;
@@ -23,6 +24,8 @@ public:
 	virtual void onLog(LogData& log)=0;
 	virtual void onContract(ContractData& contract)=0;
 
+public:
+	//上层主动调用函数，如strategy，servicemgr
 	virtual std::string getName()=0;
 	virtual EventEngine* getEventEngine()=0;
 

@@ -11,9 +11,14 @@
 
 struct CK_EXPORTS Task
 {
-	Task() :type(), task_data() {};
-	Task(const Task& t) :type(t.type), task_data(t.task_data) {};
+	enum Priority
+	{
+		high = 3,
+		middle = 2,
+		low = 1,
+	};
 
+	Priority task_priority = Priority::middle;
 	std::string type;
 	Datablk task_data;		//数据结构体
 };
@@ -22,9 +27,6 @@ typedef std::function<void(Datablk&)> Handler;
 
 struct CK_EXPORTS  FuncData
 {
-	FuncData() :h(), arg() {};
-	FuncData(const FuncData& f) :h(f.h), arg(f.arg) {};
-
 	Handler h; //事件处理函数
 	Datablk arg;    //事件处理函数参数
 };
@@ -32,13 +34,6 @@ struct CK_EXPORTS  FuncData
 //ctp
 struct CK_EXPORTS CtpData
 {
-	CtpData() :task_name(0), task_data(), task_error(), task_id(0), task_last(true) {};
-	CtpData(const CtpData& c) :task_name(c.task_name), 
-						task_data(c.task_data),
-						task_error(c.task_error),
-						task_id(c.task_id),
-						task_last(c.task_last) {};
-
 	int task_name;		//回调函数名称对应的常量
 	Datablk task_data;		//数据结构体
 	Datablk task_error;		//错误结构体

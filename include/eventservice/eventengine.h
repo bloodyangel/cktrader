@@ -33,7 +33,7 @@ private:
 private:
 	std::vector<std::thread*> *m_task_thread_pool=nullptr;
 
-	ConcurrentQueue<Task> *task_queue = nullptr;//事件任务队列
+	ConcurrentQueue *task_queue = nullptr;//事件任务队列
 	std::atomic<bool> m_active = false;//事件服务是否开始处理的标志
 	std::multimap<std::string, Handler> *handlers = nullptr;
 

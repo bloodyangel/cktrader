@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testEvent", "test\testEvent
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testctpgateway", "test\testctpgateway\testctpgateway.vcxproj", "{07518DAB-E5F1-46B0-8BBC-AD35A9F7078A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ckbacktest", "src\ckbacktest\ckbacktest.vcxproj", "{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -87,6 +89,14 @@ Global
 		{07518DAB-E5F1-46B0-8BBC-AD35A9F7078A}.Release|x64.Build.0 = Release|x64
 		{07518DAB-E5F1-46B0-8BBC-AD35A9F7078A}.Release|x86.ActiveCfg = Release|Win32
 		{07518DAB-E5F1-46B0-8BBC-AD35A9F7078A}.Release|x86.Build.0 = Release|Win32
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Debug|x64.ActiveCfg = Debug|x64
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Debug|x64.Build.0 = Debug|x64
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Debug|x86.ActiveCfg = Debug|Win32
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Debug|x86.Build.0 = Debug|Win32
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Release|x64.ActiveCfg = Release|x64
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Release|x64.Build.0 = Release|x64
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Release|x86.ActiveCfg = Release|Win32
+		{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

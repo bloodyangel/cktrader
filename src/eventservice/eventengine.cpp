@@ -10,7 +10,7 @@ EventEngine::EventEngine():the_mutex_handlers(), m_active(false), cv_handlers()
 {
 	m_task_thread_pool = nullptr;
 
-	task_queue = new ConcurrentQueue<Task>;//事件任务队列
+	task_queue = new ConcurrentQueue;//事件任务队列
 	
 	handlers = new std::multimap<std::string, Handler>;
 
@@ -195,6 +195,7 @@ void EventEngine::processTask()
 				func.arg = task.task_data;
 
 				Task handlerTask;
+				handlerTask.task_priority = Task::high;
 				handlerTask.type = EVENT_HANDLER;
 				handlerTask.task_data = func;
 				put(handlerTask);

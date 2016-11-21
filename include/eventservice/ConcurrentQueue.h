@@ -6,22 +6,41 @@
 #include <queue>
 #include <condition_variable>
 
+#include "utils/ckdef.h"
+#include "utils/cktypes.h"
+
 namespace cktrader{
 ///线程安全的队列
-template<class Data>
 class ConcurrentQueue
 {
 private:
-	std::queue<Data> the_queue;								//标准库队列
+	//三个优先级队列
+	std::queue<Task> the_queue_priority_high;
+	std::queue<Task> the_queue_priority_middle;
+	std::queue<Task> the_queue_priority_low;
+
 	mutable std::recursive_mutex the_mutex;							//互斥锁
 	mutable std::condition_variable_any the_condition_variable;			//条件变量
 
 public:
 	//存入新的任务
-	void push(Data const& data)
+	void push(Task const& data)
 	{
 		std::unique_lock<std::recursive_mutex> lck(the_mutex);				//获取互斥锁
-		the_queue.push(data);							//向队列中存入数据
+
+		//向队列中存入数据
+		if (data.task_priority == Task::high)
+		{
+			the_queue_priority_high.push(data);
+		}
+		else if (data.task_priority == Task::middle)
+		{
+			the_queue_priority_middle.push(data);
+		}
+		else if (data.task_priority == Task::low)
+		{
+			the_queue_priority_low.push(data);
+		}							
 
 		the_condition_variable.notify_one();			//通知正在阻塞等待的线程
 	}
@@ -30,33 +49,52 @@ public:
 	bool empty() const
 	{
 		std::unique_lock<std::recursive_mutex> lck(the_mutex);
-		bool isEmpty = the_queue.empty();
+		bool isEmpty = false;
 
-		return isEmpty;
-		
+		if (the_queue_priority_high.empty() &&
+			the_queue_priority_middle.empty() &&
+			the_queue_priority_low.empty())
+		{
+			isEmpty = true;
+		}
+
+		return isEmpty;		
 	}
 
 	//取出
-	Data wait_and_pop()
+	Task wait_and_pop()
 	{
 		std::unique_lock<std::recursive_mutex> lck(the_mutex);
 
-		while (the_queue.empty())						//当队列为空时
+		while (the_queue_priority_high.empty() &&
+				the_queue_priority_middle.empty() &&
+				the_queue_priority_low.empty())						//当队列为空时
 		{
 			the_condition_variable.wait(lck);			//等待条件变量通知
 		}
 
-		Data popped_value;
-		popped_value = the_queue.front();			//获取队列中的最后一个任务
-		the_queue.pop();								//删除该任务
+		Task popped_value;
 
-		return popped_value;							//返回该任务
-	}
+		if (!the_queue_priority_high.empty())
+		{
+			popped_value = the_queue_priority_high.front();			//获取队列中的最后一个任务
+			the_queue_priority_high.pop();
+			return popped_value;
+		}
 
-	size_t size()
-	{
-		std::unique_lock<std::recursive_mutex> lck(the_mutex);
-		return the_queue.size();
+		if (!the_queue_priority_middle.empty())
+		{
+			popped_value = the_queue_priority_middle.front();			//获取队列中的最后一个任务
+			the_queue_priority_middle.pop();
+			return popped_value;
+		}
+
+		if (!the_queue_priority_low.empty())
+		{
+			popped_value = the_queue_priority_low.front();			//获取队列中的最后一个任务
+			the_queue_priority_low.pop();
+			return popped_value;
+		}
 	}
 };
 
