@@ -6,6 +6,7 @@
 1、开发环境VS2015 community
 2、需要将包含文件目录指向include目录，框架无需第三方库依赖，但是框架的事件引擎，gateway，策略是相互依赖的，编译时需要指定输入库
 3、CTP接口是最新版本
+4、编译顺序：eventservice->tradercore->gateway->strategy->test
 #计划
 1、回测引擎编写
 2、UI界面编写
