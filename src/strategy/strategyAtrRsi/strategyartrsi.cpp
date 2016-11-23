@@ -47,7 +47,7 @@ bool StrategyAtrRsi::onInit()
 	pEvent->registerHandler(EVENT_TIMER, std::bind(&StrategyAtrRsi::timer, this, std::placeholders::_1));
 
 	SubscribeReq sub;
-	sub.symbol = "rb1701,IF1703";
+	sub.symbol = "rb1701,IF1703,cu1702,al1702,zn1701,ni1703,c1703,SR703,CF701,CF703,CF707,FG612,FG703,JR701,LR701,MA701,OI701,PM707";
 	pGateway->subscribe(sub);
 	std::cout << "rsi:: init"<<std::endl;
 	return true;
@@ -68,8 +68,9 @@ bool StrategyAtrRsi::onStop()
 void StrategyAtrRsi::onTick(Datablk& tick)
 {
 	TickData tick_data = tick.cast<TickData>();
-	std::cout << "rsi:: tick" << std::endl;
-	std::cout << tick_data.symbol <<" : "<<tick_data.askPrice1<< std::endl;
+	std::cout << "rsi:tick:";
+	std::cout << tick_data.symbol <<" : "<<tick_data.askPrice1;
+	std::cout <<"::" <<tick_data.date << ":" << tick_data.time << std::endl;
 }
 
 void StrategyAtrRsi::onOrder(Datablk&  order)

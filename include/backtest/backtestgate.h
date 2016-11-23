@@ -41,6 +41,8 @@ public:
 	std::atomic<bool> mdConnected = false;
 	std::atomic<bool> tdConnected = false;
 
+	void calculateBacktestingResult();
+
 private:
 	EventEngine *m_event_service;
 	std::string gateWayName;

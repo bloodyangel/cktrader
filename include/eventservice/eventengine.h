@@ -38,7 +38,6 @@ private:
 	std::multimap<std::string, Handler> *handlers = nullptr;
 
 	mutable std::recursive_mutex the_mutex_handlers;		//»¥³âËø
-	mutable std::condition_variable_any cv_handlers;
 
 	std::thread* m_timer_thread = nullptr;;//for timer
 };

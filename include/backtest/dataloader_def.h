@@ -10,9 +10,10 @@ namespace cktrader {
 
 class DataLoader
 {
-	virtual void setBeiginDate(std::string date) = 0;
-	virtual void setEndDate(std::string date) = 0;
-
+public:
+	virtual void setStartDate(std::string startDate = "20100416")=0;
+	virtual void setEndDate(std::string endDate = "")=0;
+	virtual void setPath(std::string path)=0;
 	virtual void startLoadData()=0;
 	virtual bool stopLoadData()=0;
 };

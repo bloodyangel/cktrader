@@ -74,7 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\2106\c++\cktrader\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -152,6 +152,7 @@
     <ClInclude Include="..\..\include\utils\datablk.h" />
     <ClInclude Include="..\..\include\utils\dllHelper.h" />
     <ClInclude Include="..\..\include\utils\json11.hpp" />
+    <ClInclude Include="..\..\include\utils\strptime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\include\utils\json11.cpp" />

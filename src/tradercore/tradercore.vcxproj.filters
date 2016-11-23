@@ -51,6 +51,9 @@
     <ClInclude Include="..\..\include\utils\datablk.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\utils\strptime.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="servicemgr.cpp">

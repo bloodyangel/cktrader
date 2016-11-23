@@ -6,7 +6,7 @@
 
 namespace cktrader {
 
-EventEngine::EventEngine():the_mutex_handlers(), m_active(false), cv_handlers()
+EventEngine::EventEngine():the_mutex_handlers(), m_active(false)
 {
 	m_task_thread_pool = nullptr;
 
@@ -17,7 +17,7 @@ EventEngine::EventEngine():the_mutex_handlers(), m_active(false), cv_handlers()
 	m_timer_thread = nullptr;;//for timer
 }
 
-EventEngine::EventEngine(EventEngine& engine):the_mutex_handlers(), m_active(false), cv_handlers()
+EventEngine::EventEngine(EventEngine& engine):the_mutex_handlers(), m_active(false)
 {
 	m_task_thread_pool = engine.m_task_thread_pool;
 
@@ -177,7 +177,7 @@ void EventEngine::processTask()
 				func = task.task_data.cast<FuncData>();
 				func.h(func.arg);
 			}
-			catch (std::bad_cast& bc)
+			catch (std::exception& bc)
 			{
 
 			}

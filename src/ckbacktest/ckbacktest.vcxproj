@@ -74,7 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\2106\c++\cktrader\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -146,6 +146,11 @@
     <ClInclude Include="..\..\include\backtest\backtest.h" />
     <ClInclude Include="..\..\include\backtest\backtestgate.h" />
     <ClInclude Include="..\..\include\backtest\dataloader_def.h" />
+    <ClInclude Include="..\..\include\backtest\dataloader_iml_csv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="backtest.cpp" />
+    <ClCompile Include="dataloader_iml_csv.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
