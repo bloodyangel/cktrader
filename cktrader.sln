@@ -4,24 +4,46 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tradercore", "src\tradercore\tradercore.vcxproj", "{EBA95E44-14FF-49F0-93E2-5E2BCAEABE1D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eventservice", "src\eventservice\eventservice.vcxproj", "{DC92B7A2-0639-488C-994B-AACB0D0474E3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CTPGateway", "src\gateway\CTPGateway\CTPGateway.vcxproj", "{7F8D9443-7AD9-4A58-B7AF-D0A0818036D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateway", "gateway", "{64CA6DAA-2518-4431-902A-85186721F510}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "strategy", "strategy", "{A3A7592C-7CFD-4022-A606-97F11C4FB316}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testall", "test\test.vcxproj", "{50A08B94-27F4-4299-8F47-84D8D35FBD3E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7F8D9443-7AD9-4A58-B7AF-D0A0818036D0} = {7F8D9443-7AD9-4A58-B7AF-D0A0818036D0}
+		{613B716A-1FEC-4940-A774-01859BD35F1B} = {613B716A-1FEC-4940-A774-01859BD35F1B}
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "strategyAtrRsi", "src\strategy\strategyAtrRsi\strategyAtrRsi.vcxproj", "{613B716A-1FEC-4940-A774-01859BD35F1B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7F8D9443-7AD9-4A58-B7AF-D0A0818036D0} = {7F8D9443-7AD9-4A58-B7AF-D0A0818036D0}
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CE9EE6A2-5CBD-46A1-9681-F7C0A5FB17A2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testEvent", "test\testEvent\testEvent.vcxproj", "{C2E6F64F-4BC9-4A7C-B5F7-DE688E2BA062}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testctpgateway", "test\testctpgateway\testctpgateway.vcxproj", "{07518DAB-E5F1-46B0-8BBC-AD35A9F7078A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7F8D9443-7AD9-4A58-B7AF-D0A0818036D0} = {7F8D9443-7AD9-4A58-B7AF-D0A0818036D0}
+		{DC92B7A2-0639-488C-994B-AACB0D0474E3} = {DC92B7A2-0639-488C-994B-AACB0D0474E3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ckbacktest", "src\ckbacktest\ckbacktest.vcxproj", "{E7CBA684-056A-4F52-B3ED-DF708A3E3FC9}"
 EndProject
