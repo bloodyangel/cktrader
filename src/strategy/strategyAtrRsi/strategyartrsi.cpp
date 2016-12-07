@@ -37,6 +37,7 @@ bool StrategyAtrRsi::onInit()
 	SubscribeReq sub2;
 	sub2.symbol = "000002,000001";
 	sub2.exchange = "SZE";
+	plts_Gateway->subscribe(sub2);
 	console->info("rsi:: start");
 	rotating_log->info("rsi:: start");
 	return true;
