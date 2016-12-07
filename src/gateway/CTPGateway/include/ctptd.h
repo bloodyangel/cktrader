@@ -7,6 +7,7 @@
 #include "ThostFtdcTraderApi.h"
 #include "utils/ckdef.h"
 #include "utils/cktypes.h"
+#include "ctpdefs.h"
 
 #include <map>
 #include <mutex>

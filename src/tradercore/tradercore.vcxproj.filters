@@ -22,6 +22,9 @@
     <Filter Include="Header Files\strategy">
       <UniqueIdentifier>{3c0d8595-4113-4130-aa18-e956ced76d23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\strategy">
+      <UniqueIdentifier>{77157644-aa61-415e-99f1-d6c8ae49413a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\utils\ckdef.h">
@@ -62,10 +65,5 @@
     <ClCompile Include="..\..\include\utils\json11.cpp">
       <Filter>Header Files\utils</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cktrader_setting.json">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

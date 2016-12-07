@@ -41,6 +41,16 @@ struct CK_EXPORTS CtpData
 	bool task_last;		//是否为最后返回
 };
 
+//lts
+struct CK_EXPORTS LtsData
+{
+	int task_name;		//回调函数名称对应的常量
+	Datablk task_data;		//数据结构体
+	Datablk task_error;		//错误结构体
+	int task_id;		//请求id
+	bool task_last;		//是否为最后返回
+};
+
 struct CK_EXPORTS StopOrder
 {
 	std::string symbol;
@@ -214,6 +224,7 @@ struct CK_EXPORTS SubscribeReq
 	std::string expiry;
 	double strikePrice;
 	std::string optionType;
+	std::string strateyName;
 };
 
 struct CK_EXPORTS OrderReq
@@ -240,6 +251,7 @@ struct CK_EXPORTS CancelOrderReq
 	std::string orderID;
 	std::string frontID;
 	std::string sessionID;
+	std::string strateyName;
 };
 
 #endif

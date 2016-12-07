@@ -9,10 +9,13 @@
 
 namespace cktrader {
 
+class EventEngine;
+
 class IServiceMgr
 {
 public:
 	virtual IGateway* getGateWay(std::string gateWayName) = 0;
+	virtual EventEngine* getEventEngine()=0;
 };
 
 }//cktrader

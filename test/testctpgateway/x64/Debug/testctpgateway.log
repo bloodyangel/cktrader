@@ -1,1 +1,5 @@
-﻿
+﻿  stdafx.cpp
+  testctpgateway.cpp
+e:\2106\c++\cktrader\test\testctpgateway\testctpgateway.cpp(44): error C2039: 'getEventEngine': is not a member of 'cktrader::IGateway'
+  e:\2106\c++\cktrader\include\gateway\tgateway_def.h(17): note: see declaration of 'cktrader::IGateway'
+e:\2106\c++\cktrader\test\testctpgateway\testctpgateway.cpp(56): error C2660: 'cktrader::IGateway::connect': function does not take 5 arguments

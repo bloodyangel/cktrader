@@ -8,6 +8,10 @@
 
 #include <string>
 
+#include "spdlog/spdlog.h"
+
+using namespace spdlog;
+
 using namespace cktrader;
 
 CAPI_CKTRADER
@@ -32,7 +36,11 @@ public:
 	void timer(Datablk& tick);
 
 private:
-	IGateway * pGateway;
+	IGateway * pctp_Gateway = nullptr;
+	IGateway * plts_Gateway = nullptr;
+	EventEngine* pEvent = nullptr;
+	std::shared_ptr<spdlog::logger> console;
+	std::shared_ptr<spdlog::logger> rotating_log;
 };
 
 #endif

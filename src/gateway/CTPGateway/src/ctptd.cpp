@@ -49,6 +49,7 @@ namespace cktrader {
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	void CtpTd::OnFrontConnected()
 	{
+		gateWay->writeLog("CtpTd::OnFrontConnected");
 		CtpData data = CtpData();
 
 		Task task = Task();
@@ -66,6 +67,7 @@ namespace cktrader {
 	///        0x2003 收到错误报文
 	void CtpTd::OnFrontDisconnected(int nReason)
 	{
+		gateWay->writeLog("CtpTd::OnFrontDisconnected");
 		CtpData data = CtpData();
 		data.task_id = nReason;
 
@@ -78,6 +80,7 @@ namespace cktrader {
 	///登录请求响应
 	void CtpTd::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpTd::OnRspUserLogin");
 		CtpData data = CtpData();
 
 		if (pRspUserLogin)
@@ -113,6 +116,7 @@ namespace cktrader {
 	///登出请求响应
 	void CtpTd::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpTd::OnRspUserLogout");
 		CtpData data = CtpData();
 
 		if (pUserLogout)
@@ -148,6 +152,7 @@ namespace cktrader {
 	///报单录入请求响应
 	void CtpTd::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpTd::OnRspOrderInsert");
 		CtpData data = CtpData();
 
 		if (pInputOrder)
@@ -183,6 +188,7 @@ namespace cktrader {
 	///报单操作请求响应
 	void CtpTd::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpTd::OnRspOrderAction");
 		CtpData data = CtpData();
 
 		if (pInputOrderAction)

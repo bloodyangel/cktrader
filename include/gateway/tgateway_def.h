@@ -11,6 +11,8 @@
 
 namespace cktrader {
 
+class IServiceMgr;
+
 class IGateway
 {
 public:
@@ -27,9 +29,8 @@ public:
 public:
 	//上层主动调用函数，如strategy，servicemgr
 	virtual std::string getName()=0;
-	virtual EventEngine* getEventEngine()=0;
 
-	virtual void connect(std::string& userID, std::string& password, std::string& brokerID, std::string& mdAddress, std::string& tdAddress) = 0;
+	virtual void connect(std::string& userID, std::string& password) = 0;
 	virtual void subscribe(SubscribeReq& subReq) = 0;
 	virtual std::string sendOrder(OrderReq& orderReq) = 0;
 	virtual void cancelOrder(CancelOrderReq& cancelOrderReq) = 0;

@@ -7,6 +7,7 @@
 #include "ThostFtdcMdApi.h"
 #include "utils/ckdef.h"
 #include "utils/cktypes.h"
+#include "ctpdefs.h"
 
 #include <set>
 #include <string>
@@ -87,7 +88,7 @@ namespace cktrader {
 		CThostFtdcMdApi* api;
 
 		std::string gateWayName;
-		int reqID; //ÇëÇóid
+		std::atomic<int> reqID = 0; //ÇëÇóid
 
 		std::atomic<bool> connectionStatus = false;      // Á¬½Ó×´Ì¬
 		std::atomic<bool> loginStatus = false;//            µÇÂ¼×´Ì¬

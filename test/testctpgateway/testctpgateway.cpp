@@ -41,7 +41,7 @@ int main()
 	{
 		return -1;
 	}
-	EventEngine* pEvent = gate->getEventEngine();
+	EventEngine* pEvent = mgr.getEventEngine();
 	if (!pEvent)
 	{
 		return -3;
@@ -49,11 +49,7 @@ int main()
 	pEvent->registerHandler(EVENT_LOG, std::bind(on_log, std::placeholders::_1));
 	pEvent->registerHandler(EVENT_TICK, std::bind(on_tick, std::placeholders::_1));
 
-	gate->connect(std::string("036789"),
-		std::string("85399386"),
-		std::string("9999"),
-		std::string("tcp://180.168.146.187:10010"),
-		std::string("tcp://180.168.146.187:10000"));
+	gate->connect(std::string("036789"),std::string("85399386"));
 
 	Sleep(1000);
 

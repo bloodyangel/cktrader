@@ -4,6 +4,7 @@
 #include "ctpmd.h"
 #include "eventservice/eventengine.h"
 
+//todo linux
 #include <direct.h>
 #include <io.h>
 
@@ -34,6 +35,7 @@ namespace cktrader {
 	///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 	void CtpMd::OnFrontConnected()
 	{
+		gateWay->writeLog("CtpMd::OnFrontConnected");
 		CtpData data = CtpData();
 
 		Task task = Task();
@@ -51,6 +53,7 @@ namespace cktrader {
 	///        0x2003 收到错误报文
 	void CtpMd::OnFrontDisconnected(int nReason)
 	{
+		gateWay->writeLog("CtpMd::OnFrontDisconnected");
 		CtpData data = CtpData();
 		data.task_id = nReason;
 
@@ -63,6 +66,7 @@ namespace cktrader {
 	///登录请求响应
 	void CtpMd::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpMd::OnRspUserLogin");
 		CtpData data = CtpData();
 
 		if (pRspUserLogin)
@@ -98,6 +102,7 @@ namespace cktrader {
 	///登出请求响应
 	void CtpMd::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpMd::OnRspUserLogout");
 		CtpData data = CtpData();
 
 		if (pUserLogout)
@@ -133,6 +138,7 @@ namespace cktrader {
 	///错误应答
 	void CtpMd::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 	{
+		gateWay->writeLog("CtpMd::OnRspError");
 		CtpData data = CtpData();
 
 		if (pRspInfo)
@@ -157,6 +163,7 @@ namespace cktrader {
 	///深度行情通知
 	void CtpMd::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData)
 	{
+		gateWay->writeLog("CtpMd::OnRtnDepthMarketData");
 		CtpData data = CtpData();
 
 		if (pDepthMarketData)
@@ -180,9 +187,8 @@ namespace cktrader {
 
 	void CtpMd::processFrontConnected(Datablk& data)
 	{
+		gateWay->writeLog("CtpMd::processFrontConnected");
 		connectionStatus = true;
-
-		CtpData ctpdata = data.cast<CtpData>();
 
 		LogData log = LogData();
 		log.gateWayName = gateWayName;
@@ -205,11 +211,10 @@ namespace cktrader {
 
 	void CtpMd::processFrontDisconnected(Datablk& data)
 	{
+		gateWay->writeLog("CtpMd::processFrontDisconnected");
 		connectionStatus = false;
 		loginStatus = false;
 		gateWay->mdConnected = false;
-
-		CtpData ctpdata = data.cast<CtpData>();
 
 		LogData log = LogData();
 		log.gateWayName = gateWayName;
@@ -219,6 +224,7 @@ namespace cktrader {
 
 	void CtpMd::processRspUserLogin(Datablk& data)
 	{
+		gateWay->writeLog("CtpMd::processRspUserLogin");
 		CtpData ctpdata = data.cast<CtpData>();
 
 		CThostFtdcRspInfoField task_error = ctpdata.task_error.cast<CThostFtdcRspInfoField>();
@@ -249,6 +255,7 @@ namespace cktrader {
 
 	void CtpMd::processRspUserLogout(Datablk& data)
 	{
+		gateWay->writeLog("CtpMd::processRspUserLogout");
 		CtpData ctpdata = data.cast<CtpData>();
 
 		CThostFtdcRspInfoField task_error = ctpdata.task_error.cast<CThostFtdcRspInfoField>();
@@ -274,6 +281,7 @@ namespace cktrader {
 
 	void CtpMd::processRspError(Datablk& data)
 	{
+		gateWay->writeLog("CtpMd::processRspError");
 		CtpData ctpdata = data.cast<CtpData>();
 
 		CThostFtdcRspInfoField task_error = ctpdata.task_error.cast<CThostFtdcRspInfoField>();
@@ -337,6 +345,7 @@ namespace cktrader {
 			std::string pwd = getcwd(dir_ptr, 512);
 			pwd = pwd + CTP_PATH_COM;
 
+			//todo linux
 			if (access(pwd.c_str(), 0) == -1)
 			{
 				mkdir(pwd.c_str());

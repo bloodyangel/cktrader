@@ -36,6 +36,12 @@
     <ClInclude Include="include\ThostFtdcUserApiStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ctpdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\utils\json11.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CTPGateway.cpp">
@@ -47,5 +53,14 @@
     <ClCompile Include="src\ctpmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\CTPGateway_iml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\utils\json11.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ctp_setting.json" />
   </ItemGroup>
 </Project>

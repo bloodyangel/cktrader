@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)src\gateway\CTPGateway\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,12 +91,18 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CTPGATEWAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;CKAPI_EXPORTS;_DEBUG;_WINDOWS;_USRDLL;CTPGATEWAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>eventservice.lib;thostmduserapi.lib;thosttraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /r /y $(SolutionDir)Debug\CTPGateway.dll $(SolutionDir)bin
+xcopy /r /y $(SolutionDir)lib\thostmduserapi.dll $(SolutionDir)bin
+xcopy /r /y $(SolutionDir)lib\thosttraderapi.dll $(SolutionDir)bin</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -145,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\utils\json11.hpp" />
+    <ClInclude Include="include\ctpdefs.h" />
     <ClInclude Include="include\CTPGateway.h" />
     <ClInclude Include="include\ctpmd.h" />
     <ClInclude Include="include\ctptd.h" />
@@ -154,9 +164,14 @@
     <ClInclude Include="include\ThostFtdcUserApiStruct.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\utils\json11.cpp" />
     <ClCompile Include="src\CTPGateway.cpp" />
+    <ClCompile Include="src\CTPGateway_iml.cpp" />
     <ClCompile Include="src\ctpmd.cpp" />
     <ClCompile Include="src\ctptd.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ctp_setting.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

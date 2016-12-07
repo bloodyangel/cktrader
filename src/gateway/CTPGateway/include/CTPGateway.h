@@ -8,14 +8,17 @@
 #include "utils/ckdef.h"
 #include "utils/cktypes.h"
 #include "gateway/tgateway_def.h"
+#include "ctpdefs.h"
 
 #include <atomic>
 
 namespace cktrader {
 
+#define CKTRADER_CTP_FILE "ctp_setting.json"
+
 CAPI_CKTRADER
 {
-	CK_EXPORTS  IGateway* CreateGateway(const char* x);
+	CK_EXPORTS  IGateway* CreateGateway(EventEngine* pEvent,const char* x);
 	CK_EXPORTS int ReleaseGateway(IGateway*p);
 }
 
@@ -26,7 +29,7 @@ class CtpTd;
 class CTPGateWay:public IGateway
 {
 public:
-    CTPGateWay(std::string gateWayName = "ctp");
+    CTPGateWay(EventEngine* pEvent,std::string gateWayName = "ctp");
     ~CTPGateWay();
 
 	void onTick(TickData& tick);
@@ -41,13 +44,16 @@ public:
 	std::string getName();
 	EventEngine* getEventEngine();
 
-    void connect(std::string& userID,std::string& password,std::string& brokerID,std::string& mdAddress,std::string& tdAddress);
+    void connect(std::string& userID,std::string& password);
     void subscribe(SubscribeReq& subReq);
     std::string sendOrder(OrderReq& orderReq);
     void cancelOrder(CancelOrderReq& cancelOrderReq);
     void qryAccount();
     void qryPosition();
     void close();
+
+	std::string readFile(std::string fileName);
+	void writeLog(std::string logInfo);
 
     void query(Datablk& notUse);
 

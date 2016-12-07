@@ -116,7 +116,7 @@ bool EventEngine::startEngine()
 
 	std::function<void()> f = std::bind(&EventEngine::processTask, this);
 
-	for (unsigned i = 0; i < std::thread::hardware_concurrency(); i++)
+	for (unsigned i = 0; i < 2*std::thread::hardware_concurrency(); i++)
 	{
 		std::thread* thread_worker = new std::thread(f);
 		m_task_thread_pool->push_back(thread_worker);

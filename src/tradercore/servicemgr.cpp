@@ -1,5 +1,6 @@
 #include "servicemgr_iml.h"
 #include "utils/json11.hpp"
+#include "eventservice/eventengine.h"
 
 #include <fstream> 
 #include <sstream>
@@ -14,8 +15,8 @@ ServiceMgr::ServiceMgr():the_mutex()
 
 	m_StrategyMap = new std::map<std::string, IStrategy*>;//装载strategy
 
-	initGateway();
-	initStrategy();
+	m_eventEngine = new EventEngine();
+	m_eventEngine->startEngine();
 }
 
 ServiceMgr::ServiceMgr(ServiceMgr& mgr):the_mutex()
@@ -78,39 +79,14 @@ ServiceMgr::~ServiceMgr()
 		delete m_StrategyMap;
 		m_StrategyMap = nullptr;
 	}
+
+	if (m_eventEngine)
+	{
+		delete m_eventEngine;
+		m_eventEngine = nullptr;
+	}
 }
 
-//从json文件解析gateway
-bool ServiceMgr::initGateway()	
-{
-	std::stringstream settingStream;
-
-	bool isRight = readFile(CKTRADER_SETTING_FILE, settingStream);
-
-	if (!isRight)
-	{
-		return false;
-	}
-
-	std::string err;
-	auto setting_json = json11::Json::parse(settingStream.str(), err);
-	if (!err.empty())
-	{
-		return false;
-	}
-
-	auto gatewaySeting = setting_json["Gateway"];
-
-	for (auto& k : gatewaySeting.array_items())
-	{
-		std::string name = k["name"].string_value();
-		std::string address = k["fileAddress"].string_value();
-
-		loadGateWay(name, address);
-	}
-
-	return true;
-}
 //从dll动态加载gateway
 IGateway* ServiceMgr::loadGateWay(std::string name, std::string path)
 {
@@ -127,41 +103,13 @@ IGateway* ServiceMgr::loadGateWay(std::string name, std::string path)
 	CreateGateway pfunc = _dll->GetProcedure<CreateGateway>("CreateGateway");
 	if (pfunc)
 	{
-		IGateway* gate = pfunc(name.c_str());		
+		IGateway* gate = pfunc(m_eventEngine,name.c_str());		
 		m_GateWayMap->insert(std::make_pair(name, gate));
 
 		return gate;
 	}
 
 	return nullptr;
-}
-
-//从json文件解析strategy
-bool ServiceMgr::initStrategy()
-{
-	std::stringstream settingStream;
-
-	bool isRight = readFile(CKTRADER_SETTING_FILE, settingStream);
-
-	if (!isRight)
-	{
-		return false;
-	}
-
-	std::string err;
-	auto setting_json = json11::Json::parse(settingStream.str(), err);
-
-	auto gatewaySeting = setting_json["strategy"];
-
-	for (auto& k : gatewaySeting.array_items())
-	{
-		std::string name = k["name"].string_value();
-		std::string address = k["fileAddress"].string_value();
-
-		loadGateWay(name, address);
-	}
-
-	return true;
 }
 
 //从dll动态加载strategy
@@ -260,6 +208,11 @@ bool ServiceMgr::stopStrategy(std::string strategyName)
 	}
 }
 
+EventEngine* ServiceMgr::getEventEngine()
+{
+	return m_eventEngine;
+}
+
 bool ServiceMgr::readFile(std::string fileName,std::stringstream& stringText)
 {
 	std::ifstream is(fileName, std::ifstream::binary);
@@ -272,7 +225,8 @@ bool ServiceMgr::readFile(std::string fileName,std::stringstream& stringText)
 		int length = is.tellg();
 		is.seekg(0, is.beg);
 
-		char * buffer = new char[length];
+		char * buffer = new char[length+1];
+		memset(buffer, 0, length + 1);
 
 		// read data as a block:
 		is.read(buffer, length);

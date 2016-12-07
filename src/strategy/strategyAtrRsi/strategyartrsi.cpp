@@ -3,33 +3,17 @@
 #include <assert.h>
 #include <iostream>
 #include <functional>
+#include <thread>
 
-IStrategy* g_strategy_art_rsi = nullptr;
-
-CK_EXPORTS IStrategy* CreateStrategy(IServiceMgr*x, const char*name)
-{
-	if (!g_strategy_art_rsi)
-	{
-		g_strategy_art_rsi = new StrategyAtrRsi(x,name);
-	}
-
-	return g_strategy_art_rsi;
-}
-
-CK_EXPORTS int ReleaseStrategy(IStrategy*p)
-{
-	if (g_strategy_art_rsi)
-	{
-		delete g_strategy_art_rsi;
-		g_strategy_art_rsi = nullptr;
-	}
-
-	return CK_TRUE;
-}
 
 StrategyAtrRsi::StrategyAtrRsi(IServiceMgr* x, const char* name)
 {
-	pGateway = x->getGateWay("ctp");
+	pctp_Gateway = x->getGateWay("ctp");
+	plts_Gateway = x->getGateWay("lts");
+	pEvent = x->getEventEngine();
+
+	console = stdout_color_mt("console");
+	rotating_log = rotating_logger_mt("artrsi", "mylogfile", 1048576 * 2, 3);
 }
 
 StrategyAtrRsi::~StrategyAtrRsi()
@@ -39,59 +23,64 @@ StrategyAtrRsi::~StrategyAtrRsi()
 
 bool StrategyAtrRsi::onInit()
 {
-	EventEngine* pEvent = pGateway->getEventEngine();
 	pEvent->registerHandler(EVENT_TICK, std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1));
 	pEvent->registerHandler(EVENT_ORDER, std::bind(&StrategyAtrRsi::onOrder, this, std::placeholders::_1));
 	pEvent->registerHandler(EVENT_TRADE, std::bind(&StrategyAtrRsi::onTrade, this, std::placeholders::_1));
 	pEvent->registerHandler(EVENT_LOG, std::bind(&StrategyAtrRsi::onLog, this, std::placeholders::_1));
 	pEvent->registerHandler(EVENT_TIMER, std::bind(&StrategyAtrRsi::timer, this, std::placeholders::_1));
 
-	SubscribeReq sub;
-	sub.symbol = "rb1701,IF1703,cu1702,al1702,zn1701,ni1703,c1703,SR703,CF701,CF703,CF707,FG612,FG703,JR701,LR701,MA701,OI701,PM707";
-	pGateway->subscribe(sub);
-	std::cout << "rsi:: init"<<std::endl;
+	std::this_thread::sleep_for(std::chrono::seconds(20));
+	SubscribeReq sub1;
+	sub1.symbol = "rb1701,IF1703,cu1702,al1702,zn1701,ni1703,c1703,SR703,CF701,CF703,CF707,FG612,FG703,JR701,LR701,MA701,OI701,PM707";
+	pctp_Gateway->subscribe(sub1);
+
+	SubscribeReq sub2;
+	sub2.symbol = "000002,000001";
+	sub2.exchange = "SZE";
+	console->info("rsi:: start");
+	rotating_log->info("rsi:: start");
 	return true;
 }
 
 bool StrategyAtrRsi::onStart()
 {
-	std::cout << "rsi:: start"<<std::endl;
+	console->info("rsi:: start");
+	rotating_log->info("rsi:: start");
 	return true;
 }
 
 bool StrategyAtrRsi::onStop()
 {
-	std::cout << "rsi:: stop"<<std::endl;
+	console->info("rsi:: stop");
+	rotating_log->info("rsi:: stop");
 	return true;
 }
 
 void StrategyAtrRsi::onTick(Datablk& tick)
 {
 	TickData tick_data = tick.cast<TickData>();
-	std::cout << "rsi:tick:";
-	std::cout << tick_data.symbol <<" : "<<tick_data.askPrice1;
-	std::cout <<"::" <<tick_data.date << ":" << tick_data.time << std::endl;
+	console->info("date{}:rsi:tick:{}:{}",tick_data.date, tick_data.symbol, tick_data.askPrice1);
+	rotating_log->info("date{}:rsi:tick:{}:{}", tick_data.date, tick_data.symbol, tick_data.askPrice1);
 }
 
 void StrategyAtrRsi::onOrder(Datablk&  order)
 {
-	std::cout << "rsi:: order" << std::endl;
+	console->info("rsi:: order");
 }
 
 void StrategyAtrRsi::onTrade(Datablk&  trade)
 {
-	std::cout << "rsi:: trade" << std::endl;
+	console->info("rsi:: trade");
 }
 
 void StrategyAtrRsi::onLog(Datablk&  log)
 {
 	LogData log_data = log.cast<LogData>();
 
-	std::cout << "rsi:: log" << std::endl;
-	std::cout << log_data.logContent << std::endl;
+	console->info("log{}:{}", log_data.gateWayName, log_data.logContent);
 }
 
 void StrategyAtrRsi::timer(Datablk& tick)
 {
-	std::cout << "timer" << std::endl;
+	console->info("timer");
 }

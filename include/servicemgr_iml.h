@@ -11,12 +11,10 @@
 
 namespace cktrader {
 
-#define CKTRADER_SETTING_FILE "cktrader_setting.json"
-
-typedef IGateway* (*CreateGateway)(const char*);
+typedef IGateway* (*CreateGateway)(EventEngine* pEvent,const char*);
 typedef int(*ReleaseGateway)(IGateway*p);
 
-typedef IStrategy* (*CreateStrategy)(IServiceMgr*,const char*);
+typedef IStrategy* (*CreateStrategy)(IServiceMgr*, const char*);
 typedef int(*ReleaseStrategy)(IStrategy*p);
 
 class CK_EXPORTS ServiceMgr:public IServiceMgr
@@ -26,10 +24,8 @@ public:
 	ServiceMgr(ServiceMgr& mgr);
 	~ServiceMgr();
 
-	bool initGateway();//从json文件解析gateway	
 	IGateway* loadGateWay(std::string name, std::string path);//从dll动态加载gateway
 
-	bool initStrategy();//从json文件解析strategy
 	IStrategy* loadStrategy(std::string name, std::string path);//从dll动态加载strategy
 
 	virtual IGateway* getGateWay(std::string gateWayName);//从本地字典内获取gateway
@@ -38,6 +34,8 @@ public:
 	bool initStrategy(std::string strategyName);
 	bool startStrategy(std::string strategyName);
 	bool stopStrategy(std::string strategyName);
+
+	virtual EventEngine* getEventEngine();
 
 	std::map<std::string, IGateway*>* getGatewayMap();
 	std::map<std::string, IStrategy*>* getStrategyMap();
@@ -52,6 +50,8 @@ private:
 	std::map<std::string, IGateway*> *m_GateWayMap = nullptr;//装载gateway
 	
 	std::map<std::string, IStrategy*> *m_StrategyMap = nullptr;//装载strategy
+
+	EventEngine* m_eventEngine = nullptr;
 
 	mutable std::recursive_mutex the_mutex;
 };

@@ -18,9 +18,15 @@
     <ClInclude Include="strategyartrsi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\spdlog\spdlog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strategyartrsi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strategy_iml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

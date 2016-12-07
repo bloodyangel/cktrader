@@ -7,6 +7,8 @@
 
 namespace cktrader {
 
+class IServiceMgr;
+
 class IStrategy
 {
 public:

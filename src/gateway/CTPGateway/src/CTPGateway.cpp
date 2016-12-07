@@ -2,35 +2,16 @@
 #include "ctpmd.h"
 #include "ctptd.h"
 #include "eventservice/eventengine.h"
+#include "utils/json11.hpp"
+
+#include <fstream> 
+#include <sstream>
 
 namespace cktrader {
 
-IGateway* g_ctpGateway = nullptr;
-
-CK_EXPORTS IGateway* CreateGateway(const char* x)
+CTPGateWay::CTPGateWay(EventEngine* pEvent,std::string gateWayName)
 {
-	if (!g_ctpGateway)
-	{
-		g_ctpGateway = new CTPGateWay(x);
-	}
-
-	return g_ctpGateway;
-}
-
-CK_EXPORTS int ReleaseGateway(IGateway*p)
-{
-	if (g_ctpGateway)
-	{
-		delete g_ctpGateway;
-		g_ctpGateway = nullptr;
-	}
-
-	return CK_TRUE;
-}
-
-CTPGateWay::CTPGateWay(std::string gateWayName)
-{
-	this->m_event_service = new EventEngine();	
+	this->m_event_service = pEvent;
 
 	mdConnected = false;
 	tdConnected = false;
@@ -39,14 +20,9 @@ CTPGateWay::CTPGateWay(std::string gateWayName)
 
 	md = new CtpMd(m_event_service, this);
 	td = new CtpTd(m_event_service, this);
-
-	this->m_event_service->startEngine();
 }
 CTPGateWay::~CTPGateWay()
 {
-	mdConnected = false;
-	tdConnected = false;
-
 	md->close();
 	delete md;
 	md = nullptr;
@@ -155,12 +131,25 @@ EventEngine* CTPGateWay::getEventEngine()
 	return m_event_service;
 }
 
-void CTPGateWay::connect(std::string& userID,
-						std::string& password,
-						std::string& brokerID,
-						std::string& mdAddress,
-						std::string& tdAddress)
+void CTPGateWay::connect(std::string& userID,std::string& password)
 {
+	std::string data = readFile(CKTRADER_CTP_FILE);
+
+	if (data.empty())
+	{
+		return;
+	}
+
+	std::string err;
+	auto setting_json = json11::Json::parse(data, err);
+	if (!err.empty())
+	{
+		return;
+	}
+
+	std::string brokerID = setting_json["brokerID"].string_value();
+	std::string mdAddress = setting_json["mdAddress"].string_value();
+	std::string tdAddress = setting_json["tdAddress"].string_value();
 	md->connect(userID, password, brokerID, mdAddress);
 	td->connect(userID, password, brokerID, tdAddress);
 
@@ -224,6 +213,45 @@ void CTPGateWay::query(Datablk& notUse)
 	{
 		qryCount = 0;
 	}
+}
+
+std::string CTPGateWay:: readFile(std::string fileName)
+{
+	std::ifstream is(fileName, std::ifstream::binary);
+	std::string ret("");
+
+	if (is)
+	{
+		// get length of file:
+		is.seekg(0, is.end);
+		int length = is.tellg();
+		is.seekg(0, is.beg);
+
+		char * buffer = new char[length+1];
+		memset(buffer, 0, length + 1);
+
+		// read data as a block:
+		is.read(buffer, length);
+
+		if (is)
+		{
+			ret = std::string(buffer);
+		}
+
+		is.close();
+
+		// ...buffer contains the entire file...
+		delete[] buffer;
+	}
+	return ret;
+}
+
+void CTPGateWay::writeLog(std::string logInfo)
+{
+	LogData data;
+	data.gateWayName = gateWayName;
+	data.logContent = logInfo;
+	onLog(data);
 }
 
 }//cktrader

@@ -1,0 +1,118 @@
+﻿  ltstd.cpp
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1002): warning C4996: 'getcwd': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getcwd. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(91): note: see declaration of 'getcwd'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1005): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _access. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_io.h(439): note: see declaration of 'access'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1007): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1032): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1033): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1034): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1035): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1036): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1037): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1052): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1056): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1060): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1107): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1108): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1109): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1110): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1133): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1134): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1135): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1140): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltstd.cpp(1141): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+  ltsqry.cpp
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1465): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1470): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1475): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1478): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1479): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1522): warning C4996: 'getcwd': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getcwd. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(91): note: see declaration of 'getcwd'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1525): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _access. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_io.h(439): note: see declaration of 'access'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1527): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1549): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1550): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1551): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1552): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1553): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1554): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1564): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1565): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1575): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsqry.cpp(1576): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+  ltsmd.cpp
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(217): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(218): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(219): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(334): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(335): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(360): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(361): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(362): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(363): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(364): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(366): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(367): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(368): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(369): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(370): warning C4244: '=': conversion from 'TSecurityFtdcLargeVolumeType' to 'int', possible loss of data
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(392): warning C4996: 'getcwd': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getcwd. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(91): note: see declaration of 'getcwd'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(395): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _access. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_io.h(439): note: see declaration of 'access'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(397): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(417): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(418): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsmd.cpp(419): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+  LTSGateway_iml.cpp
+  LtsGateway.cpp
+e:\2106\c++\cktrader\src\gateway\ltsggateway\src\ltsgateway.cpp(247): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  json11.cpp
+  Generating Code...
+ltsmd.obj : error LNK2019: unresolved external symbol "public: static class CSecurityFtdcMdApi * __cdecl CSecurityFtdcMdApi::CreateFtdcMdApi(char const *)" (?CreateFtdcMdApi@CSecurityFtdcMdApi@@SAPEAV1@PEBD@Z) referenced in function "public: void __cdecl cktrader::LtsMd::connect(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?connect@LtsMd@cktrader@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@000@Z)
+ltsqry.obj : error LNK2019: unresolved external symbol "public: static class CSecurityFtdcQueryApi * __cdecl CSecurityFtdcQueryApi::CreateFtdcQueryApi(char const *)" (?CreateFtdcQueryApi@CSecurityFtdcQueryApi@@SAPEAV1@PEBD@Z) referenced in function "public: void __cdecl cktrader::LtsQry::connect(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?connect@LtsQry@cktrader@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00000@Z)
+ltstd.obj : error LNK2019: unresolved external symbol "public: static class CSecurityFtdcTraderApi * __cdecl CSecurityFtdcTraderApi::CreateFtdcTraderApi(char const *)" (?CreateFtdcTraderApi@CSecurityFtdcTraderApi@@SAPEAV1@PEBD@Z) referenced in function "public: void __cdecl cktrader::LtsTd::connect(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?connect@LtsTd@cktrader@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00000@Z)
+E:\2106\c++\cktrader\lib\securitymduserapi.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+E:\2106\c++\cktrader\lib\securityqueryapi.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+E:\2106\c++\cktrader\lib\securitytraderapi.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+E:\2106\c++\cktrader\x64\Debug\LTSGateway.dll : fatal error LNK1120: 3 unresolved externals
