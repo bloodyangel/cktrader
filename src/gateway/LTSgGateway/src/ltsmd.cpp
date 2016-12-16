@@ -14,15 +14,15 @@ LtsMd::LtsMd(EventEngine* pEvent, LTSGateway* gateway)
 
 	subscribedSymbols = new std::vector<SubscribeReq>;
 
-	m_event_service->registerHandler(MDONFRONTCONNECTED, std::bind(&LtsMd::processFrontConnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONFRONTDISCONNECTED, std::bind(&LtsMd::processFrontDisconnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONHEARTBEATWARNING, std::bind(&LtsMd::processHeartBeatWarning, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRSPERROR, std::bind(&LtsMd::processRspError, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRSPUSERLOGIN, std::bind(&LtsMd::processRspUserLogin, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRSPUSERLOGOUT, std::bind(&LtsMd::processRspUserLogout, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRSPSUBMARKETDATA, std::bind(&LtsMd::processRspSubMarketData, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRSPUNSUBMARKETDATA, std::bind(&LtsMd::processRspUnSubMarketData, this, std::placeholders::_1));
-	m_event_service->registerHandler(MDONRTNDEPTHMARKETDATA, std::bind(&LtsMd::processRtnDepthMarketData, this, std::placeholders::_1));
+	m_event_service->registerHandler(MDONFRONTCONNECTED, std::bind(&LtsMd::processFrontConnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONFRONTDISCONNECTED,std::bind(&LtsMd::processFrontDisconnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONHEARTBEATWARNING, std::bind(&LtsMd::processHeartBeatWarning, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRSPERROR, std::bind(&LtsMd::processRspError, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRSPUSERLOGIN,  std::bind(&LtsMd::processRspUserLogin, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRSPUSERLOGOUT, std::bind(&LtsMd::processRspUserLogout, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRSPSUBMARKETDATA,  std::bind(&LtsMd::processRspSubMarketData, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRSPUNSUBMARKETDATA,  std::bind(&LtsMd::processRspUnSubMarketData, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(MDONRTNDEPTHMARKETDATA,  std::bind(&LtsMd::processRtnDepthMarketData, this, std::placeholders::_1), gateWayName);
 }
 
 LtsMd::~LtsMd()

@@ -14,16 +14,21 @@ struct CK_EXPORTS Task
 	enum Priority
 	{
 		high = 3,
-		middle = 2,
-		low = 1,
+		normal = 2,
 	};
 
-	Priority task_priority = Priority::middle;
-	std::string type;
+	Priority task_priority = Priority::normal;
+	std::string type;        //事件类型
+	bool handle_flag = false;		//当前事件是否为handler事件
 	Datablk task_data;		//数据结构体
 };
 
 typedef std::function<void(Datablk&)> Handler;
+struct Handle
+{
+	Handler fh;
+	std::string handle_register;
+};
 
 struct CK_EXPORTS  FuncData
 {

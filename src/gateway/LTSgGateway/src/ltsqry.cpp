@@ -17,41 +17,41 @@ LtsQry::LtsQry(EventEngine* pEvent, LTSGateway* gateway)
 	this->gateWay = gateway;
 	this->gateWayName = gateway->getName();
 
-	m_event_service->registerHandler(QRYONFRONTCONNECTED, std::bind(&LtsQry::processFrontConnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONFRONTDISCONNECTED, std::bind(&LtsQry::processFrontDisconnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONHEARTBEATWARNING, std::bind(&LtsQry::processHeartBeatWarning, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPERROR, std::bind(&LtsQry::processRspError, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPUSERLOGIN, std::bind(&LtsQry::processRspUserLogin, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPUSERLOGOUT, std::bind(&LtsQry::processRspUserLogout, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPFETCHAUTHRANDCODE, std::bind(&LtsQry::processRspFetchAuthRandCode, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYEXCHANGE, std::bind(&LtsQry::processRspQryExchange, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENT, std::bind(&LtsQry::processRspQryInstrument, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYINVESTOR, std::bind(&LtsQry::processRspQryInvestor, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYTRADINGCODE, std::bind(&LtsQry::processRspQryTradingCode, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYTRADINGACCOUNT, std::bind(&LtsQry::processRspQryTradingAccount, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYBONDINTEREST, std::bind(&LtsQry::processRspQryBondInterest, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYMARKETRATIONINFO, std::bind(&LtsQry::processRspQryMarketDataStaticInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENTCOMMISSIONRATE, std::bind(&LtsQry::processRspQryInstrumentCommissionRate, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYETFBASKET, std::bind(&LtsQry::processRspQryETFBasket, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYOFINSTRUMENT, std::bind(&LtsQry::processRspQryOFInstrument, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYSFINSTRUMENT, std::bind(&LtsQry::processRspQrySFInstrument, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENTUNITMARGIN, std::bind(&LtsQry::processRspQryInstrumentUnitMargin, this, std::placeholders::_1));
+	m_event_service->registerHandler(QRYONFRONTCONNECTED, std::bind(&LtsQry::processFrontConnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONFRONTDISCONNECTED, std::bind(&LtsQry::processFrontDisconnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONHEARTBEATWARNING, std::bind(&LtsQry::processHeartBeatWarning, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPERROR, std::bind(&LtsQry::processRspError, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPUSERLOGIN, std::bind(&LtsQry::processRspUserLogin, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPUSERLOGOUT, std::bind(&LtsQry::processRspUserLogout, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPFETCHAUTHRANDCODE, std::bind(&LtsQry::processRspFetchAuthRandCode, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYEXCHANGE, std::bind(&LtsQry::processRspQryExchange, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENT, std::bind(&LtsQry::processRspQryInstrument, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYINVESTOR, std::bind(&LtsQry::processRspQryInvestor, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYTRADINGCODE, std::bind(&LtsQry::processRspQryTradingCode, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYTRADINGACCOUNT, std::bind(&LtsQry::processRspQryTradingAccount, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYBONDINTEREST, std::bind(&LtsQry::processRspQryBondInterest, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYMARKETRATIONINFO,  std::bind(&LtsQry::processRspQryMarketDataStaticInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENTCOMMISSIONRATE, std::bind(&LtsQry::processRspQryInstrumentCommissionRate, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYETFBASKET,  std::bind(&LtsQry::processRspQryETFBasket, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYOFINSTRUMENT,  std::bind(&LtsQry::processRspQryOFInstrument, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYSFINSTRUMENT,  std::bind(&LtsQry::processRspQrySFInstrument, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYINSTRUMENTUNITMARGIN, std::bind(&LtsQry::processRspQryInstrumentUnitMargin, this, std::placeholders::_1), gateWayName);
 
-	m_event_service->registerHandler(QRYONRSPQRYPREDELIVINFO, std::bind(&LtsQry::processRspQryPreDelivInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYCREDITSTOCKASSIGNINFO, std::bind(&LtsQry::processRspQryCreditStockAssignInfo, this, std::placeholders::_1));
+	m_event_service->registerHandler(QRYONRSPQRYPREDELIVINFO, std::bind(&LtsQry::processRspQryPreDelivInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYCREDITSTOCKASSIGNINFO, std::bind(&LtsQry::processRspQryCreditStockAssignInfo, this, std::placeholders::_1), gateWayName);
 
-	m_event_service->registerHandler(QRYONRSPQRYCREDITCASHASSIGNINFO, std::bind(&LtsQry::processRspQryCreditCashAssignInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYCONVERSIONRATE, std::bind(&LtsQry::processRspQryConversionRate, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYHISCREDITDEBTINFO, std::bind(&LtsQry::processRspQryHisCreditDebtInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYMARKETDATASTATICINFO, std::bind(&LtsQry::processRspQryMarketDataStaticInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYEXPIREREPURCHINFO, std::bind(&LtsQry::processRspQryExpireRepurchInfo, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYBONDPLEDGERATE, std::bind(&LtsQry::processRspQryBondPledgeRate, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYPLEDGEBOND, std::bind(&LtsQry::processRspQryPledgeBond, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYORDER, std::bind(&LtsQry::processRspQryOrder, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYTRADE, std::bind(&LtsQry::processRspQryTrade, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYINVESTORPOSITION, std::bind(&LtsQry::processRspQryInvestorPosition, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYFUNDTRANSFERSERIAL, std::bind(&LtsQry::processRspQryFundTransferSerial, this, std::placeholders::_1));
-	m_event_service->registerHandler(QRYONRSPQRYFUNDINTERTRANSFERSERIAL, std::bind(&LtsQry::processRspQryFundInterTransferSerial, this, std::placeholders::_1));
+	m_event_service->registerHandler(QRYONRSPQRYCREDITCASHASSIGNINFO,  std::bind(&LtsQry::processRspQryCreditCashAssignInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYCONVERSIONRATE, std::bind(&LtsQry::processRspQryConversionRate, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYHISCREDITDEBTINFO, std::bind(&LtsQry::processRspQryHisCreditDebtInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYMARKETDATASTATICINFO,  std::bind(&LtsQry::processRspQryMarketDataStaticInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYEXPIREREPURCHINFO,  std::bind(&LtsQry::processRspQryExpireRepurchInfo, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYBONDPLEDGERATE,  std::bind(&LtsQry::processRspQryBondPledgeRate, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYPLEDGEBOND, std::bind(&LtsQry::processRspQryPledgeBond, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYORDER,  std::bind(&LtsQry::processRspQryOrder, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYTRADE,  std::bind(&LtsQry::processRspQryTrade, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYINVESTORPOSITION, std::bind(&LtsQry::processRspQryInvestorPosition, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYFUNDTRANSFERSERIAL, std::bind(&LtsQry::processRspQryFundTransferSerial, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(QRYONRSPQRYFUNDINTERTRANSFERSERIAL, std::bind(&LtsQry::processRspQryFundInterTransferSerial, this, std::placeholders::_1), gateWayName);
 }
 
 LtsQry::~LtsQry()

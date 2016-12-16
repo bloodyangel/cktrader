@@ -21,27 +21,24 @@
 #define CK_CONTRACT_SYMBOL_DELM ","
 
 /*event type*/
-#define EVENT_INFO "eInfo"
-#define EVENT_STOCK_HQ "eStockHq"
-#define EVENT_TIMER "eTimer"
+#define EVENT_INFO "eInfo."
+#define EVENT_STOCK_HQ "eStockHq."
+#define EVENT_TIMER "eTimer."
 #define EVENT_TICK  "eTick."
-#define EVENT_SUB "eSubcribe"
-#define EVENT_READY_SUB "eReadySubcribe"
+#define EVENT_SUB "eSubcribe."
+#define EVENT_READY_SUB "eReadySubcribe."
 #define EVENT_ERROR "eError."
-#define EVENT_LOG "eLog"
+#define EVENT_LOG "eLog."
 #define EVENT_CONTRACT "eContract."
 #define EVENT_ACCOUNT "eAccount."
 #define EVENT_POSITION "ePosition."
 #define EVENT_ORDER "eOrder."
 #define EVENT_TRADE "eTrade."
 #define EVENT_CANCEL_ORDER "eCancelOrder."
-#define EVENT_SEND_ORDER "eSendOrder"
-#define EVENT_CONNECT_CTP "eConnectCTP"
+#define EVENT_SEND_ORDER "eSendOrder."
+#define EVENT_CONNECT_CTP "eConnectCTP."
 
-#define EVENT_CAL_BACKTEST "eCalBacktest"
-
-//for handler type
-#define EVENT_HANDLER "eHandler"
+#define EVENT_CAL_BACKTEST "eCalBacktest."
 
 #define PRODUCT_EQUITY "¹ÉÆ±"
 #define PRODUCT_FUTURES "ÆÚ»õ"

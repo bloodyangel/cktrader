@@ -12,30 +12,28 @@ LtsTd::LtsTd(EventEngine* pEvent, LTSGateway* gateway)
 	this->gateWay = gateway;
 	this->gateWayName = gateway->getName();	
 
-	m_event_service->registerHandler(TDONFRONTCONNECTED, std::bind(&LtsTd::processFrontConnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONFRONTDISCONNECTED, std::bind(&LtsTd::processFrontDisconnected, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONHEARTBEATWARNING, std::bind(&LtsTd::processHeartBeatWarning, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPERROR, std::bind(&LtsTd::processRspError, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPUSERLOGIN, std::bind(&LtsTd::processRspUserLogin, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPUSERLOGOUT, std::bind(&LtsTd::processRspUserLogout, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPFETCHAUTHRANDCODE, std::bind(&LtsTd::processRspFetchAuthRandCode, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPORDERINSERT, std::bind(&LtsTd::processRspOrderInsert, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPORDERACTION, std::bind(&LtsTd::processRspOrderAction, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPUSERPASSWORDUPDATE, std::bind(&LtsTd::processRspUserPasswordUpdate, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPTRADINGACCOUNTPASSWORDUPDATE, std::bind(&LtsTd::processRspTradingAccountPasswordUpdate, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNORDER, std::bind(&LtsTd::processRtnOrder, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNTRADE, std::bind(&LtsTd::processRtnTrade, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONERRRTNORDERINSERT, std::bind(&LtsTd::processErrRtnOrderInsert, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONERRRTNORDERACTION, std::bind(&LtsTd::processErrRtnOrderAction, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPFUNDOUTBYLIBER, std::bind(&LtsTd::processRspFundOutByLiber, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNFUNDOUTBYLIBER, std::bind(&LtsTd::processRspFundOutByLiber, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNFUNDOUTBYLIBER, std::bind(&LtsTd::processRspFundOutByLiber, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNFUNDOUTBYLIBER, std::bind(&LtsTd::processRspFundOutByLiber, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONERRRTNFUNDOUTBYLIBER, std::bind(&LtsTd::processErrRtnFundOutByLiber, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNFUNDINBYBANK, std::bind(&LtsTd::processRtnFundInByBank, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRSPFUNDINTERTRANSFER, std::bind(&LtsTd::processRspFundInterTransfer, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONRTNFUNDINTERTRANSFERSERIAL, std::bind(&LtsTd::processRtnFundInterTransferSerial, this, std::placeholders::_1));
-	m_event_service->registerHandler(TDONERRRTNFUNDINTERTRANSFER, std::bind(&LtsTd::processErrRtnFundInterTransfer, this, std::placeholders::_1));
+	m_event_service->registerHandler(TDONFRONTCONNECTED, std::bind(&LtsTd::processFrontConnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONFRONTDISCONNECTED, std::bind(&LtsTd::processFrontDisconnected, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONHEARTBEATWARNING, std::bind(&LtsTd::processHeartBeatWarning, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPERROR, std::bind(&LtsTd::processRspError, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPUSERLOGIN, std::bind(&LtsTd::processRspUserLogin, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPUSERLOGOUT,std::bind(&LtsTd::processRspUserLogout, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPFETCHAUTHRANDCODE, std::bind(&LtsTd::processRspFetchAuthRandCode, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPORDERINSERT, std::bind(&LtsTd::processRspOrderInsert, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPORDERACTION,std::bind(&LtsTd::processRspOrderAction, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPUSERPASSWORDUPDATE,  std::bind(&LtsTd::processRspUserPasswordUpdate, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPTRADINGACCOUNTPASSWORDUPDATE, std::bind(&LtsTd::processRspTradingAccountPasswordUpdate, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRTNORDER, std::bind(&LtsTd::processRtnOrder, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRTNTRADE, std::bind(&LtsTd::processRtnTrade, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONERRRTNORDERINSERT,std::bind(&LtsTd::processErrRtnOrderInsert, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONERRRTNORDERACTION,std::bind(&LtsTd::processErrRtnOrderAction, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPFUNDOUTBYLIBER,std::bind(&LtsTd::processRspFundOutByLiber, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRTNFUNDOUTBYLIBER,std::bind(&LtsTd::processErrRtnFundOutByLiber, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONERRRTNFUNDOUTBYLIBER,std::bind(&LtsTd::processErrRtnFundOutByLiber, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRTNFUNDINBYBANK, std::bind(&LtsTd::processRtnFundInByBank, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRSPFUNDINTERTRANSFER,  std::bind(&LtsTd::processRspFundInterTransfer, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONRTNFUNDINTERTRANSFERSERIAL,std::bind(&LtsTd::processRtnFundInterTransferSerial, this, std::placeholders::_1), gateWayName);
+	m_event_service->registerHandler(TDONERRRTNFUNDINTERTRANSFER, std::bind(&LtsTd::processErrRtnFundInterTransfer, this, std::placeholders::_1), gateWayName);
 }
 
 LtsTd::~LtsTd()

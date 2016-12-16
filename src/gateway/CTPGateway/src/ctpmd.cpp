@@ -18,12 +18,12 @@ namespace cktrader {
 		subscribedSymbols = new std::set<std::string>;
 
 		//register event handler
-		m_event_service->registerHandler(MDONFRONTCONNECTED, std::bind(&CtpMd::processFrontConnected, this, std::placeholders::_1));
-		m_event_service->registerHandler(MDONFRONTDISCONNECTED, std::bind(&CtpMd::processFrontDisconnected, this, std::placeholders::_1));
-		m_event_service->registerHandler(MDONRSPUSERLOGIN, std::bind(&CtpMd::processRspUserLogin, this, std::placeholders::_1));
-		m_event_service->registerHandler(MDONRSPUSERLOGOUT, std::bind(&CtpMd::processRspUserLogout, this, std::placeholders::_1));
-		m_event_service->registerHandler(MDONRSPERROR, std::bind(&CtpMd::processRspError, this, std::placeholders::_1));
-		m_event_service->registerHandler(MDONRTNDEPTHMARKETDATA, std::bind(&CtpMd::processRtnDepthMarketData, this, std::placeholders::_1));
+		m_event_service->registerHandler(MDONFRONTCONNECTED,std::bind(&CtpMd::processFrontConnected, this, std::placeholders::_1), "ctpmd");
+		m_event_service->registerHandler(MDONFRONTDISCONNECTED,  std::bind(&CtpMd::processFrontDisconnected, this, std::placeholders::_1), "ctpmd");
+		m_event_service->registerHandler(MDONRSPUSERLOGIN,  std::bind(&CtpMd::processRspUserLogin, this, std::placeholders::_1), "ctpmd");
+		m_event_service->registerHandler(MDONRSPUSERLOGOUT, std::bind(&CtpMd::processRspUserLogout, this, std::placeholders::_1), "ctpmd");
+		m_event_service->registerHandler(MDONRSPERROR,std::bind(&CtpMd::processRspError, this, std::placeholders::_1), "ctpmd");
+		m_event_service->registerHandler(MDONRTNDEPTHMARKETDATA, std::bind(&CtpMd::processRtnDepthMarketData, this, std::placeholders::_1), "ctpmd");
 	}
 
 	CtpMd::~CtpMd()

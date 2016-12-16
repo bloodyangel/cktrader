@@ -32,15 +32,6 @@ public:
     CTPGateWay(EventEngine* pEvent,std::string gateWayName = "ctp");
     ~CTPGateWay();
 
-	void onTick(TickData& tick);
-	void onTrade(TradeData& trade);
-	void onOrder(OrderData& order);
-	void onPosition(PositionData& position);
-	void onAccount(AccountData& account);
-	void onError(ErrorData& error);
-	void onLog(LogData& log);
-	void onContract(ContractData& contract);
-
 	std::string getName();
 	EventEngine* getEventEngine();
 

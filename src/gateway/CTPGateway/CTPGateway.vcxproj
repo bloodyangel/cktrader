@@ -101,7 +101,8 @@
     <PostBuildEvent>
       <Command>xcopy /r /y $(SolutionDir)Debug\CTPGateway.dll $(SolutionDir)bin
 xcopy /r /y $(SolutionDir)lib\thostmduserapi.dll $(SolutionDir)bin
-xcopy /r /y $(SolutionDir)lib\thosttraderapi.dll $(SolutionDir)bin</Command>
+xcopy /r /y $(SolutionDir)lib\thosttraderapi.dll $(SolutionDir)bin
+xcopy /r /y $(ProjectDir)ctp_setting.json $(SolutionDir)bin</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

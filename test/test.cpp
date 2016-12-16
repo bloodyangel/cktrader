@@ -24,12 +24,12 @@ int main()
 		return -1;
 	}
 	EventEngine *pEvent = mgr.getEventEngine();
-	pEvent->registerHandler(EVENT_LOG, std::bind(on_log, std::placeholders::_1));
+	//pEvent->registerHandler(EVENT_LOG, std::bind(on_log, std::placeholders::_1));
 
 	ctp_gate->connect(std::string("036789"),std::string("85399386"));
 	lts_gate->connect(std::string("020000000334"), std::string("150601"));
 
-	std::this_thread::sleep_for(std::chrono::seconds(20));
+	std::this_thread::sleep_for(std::chrono::seconds(5));
 
 	IStrategy* rsk = mgr.loadStrategy("artris","strategyAtrRsi.dll");
 	if (!rsk)

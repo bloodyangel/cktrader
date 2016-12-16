@@ -148,13 +148,19 @@ xcopy /r /y $(SolutionDir)Debug\eventservice.lib $(SolutionDir)lib</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\eventservice\ConcurrentQueue.h" />
+    <ClInclude Include="..\..\include\eventservice\blockingconcurrentqueue.h" />
+    <ClInclude Include="..\..\include\eventservice\concurrentqueue.h" />
     <ClInclude Include="..\..\include\eventservice\eventengine.h" />
+    <ClInclude Include="..\..\include\eventservice\fcmm.hpp" />
+    <ClInclude Include="..\..\include\eventservice\MapItem.h" />
+    <ClInclude Include="..\..\include\eventservice\taskcontainer.h" />
     <ClInclude Include="..\..\include\utils\ckdef.h" />
     <ClInclude Include="..\..\include\utils\cktypes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="eventengine.cpp" />
+    <ClCompile Include="MapItem.cpp" />
+    <ClCompile Include="taskcontainer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

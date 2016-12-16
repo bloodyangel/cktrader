@@ -23,19 +23,27 @@ StrategyAtrRsi::~StrategyAtrRsi()
 
 bool StrategyAtrRsi::onInit()
 {
-	pEvent->registerHandler(EVENT_TICK, std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1));
-	pEvent->registerHandler(EVENT_ORDER, std::bind(&StrategyAtrRsi::onOrder, this, std::placeholders::_1));
-	pEvent->registerHandler(EVENT_TRADE, std::bind(&StrategyAtrRsi::onTrade, this, std::placeholders::_1));
-	pEvent->registerHandler(EVENT_LOG, std::bind(&StrategyAtrRsi::onLog, this, std::placeholders::_1));
-	pEvent->registerHandler(EVENT_TIMER, std::bind(&StrategyAtrRsi::timer, this, std::placeholders::_1));
+	pEvent->registerHandler(EVENT_TICK+std::string("rb1701"),std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi" );
+	pEvent->registerHandler(EVENT_TICK + std::string("IF1703"), std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TICK + std::string("cu1702"), std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TICK + std::string("al1702"), std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TICK + std::string("zn1701"), std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TICK + std::string("ni1703"), std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TICK, std::bind(&StrategyAtrRsi::onTick, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_ORDER,std::bind(&StrategyAtrRsi::onOrder, this, std::placeholders::_1),"artrsi");
+	pEvent->registerHandler(EVENT_TRADE,std::bind(&StrategyAtrRsi::onTrade, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_LOG, std::bind(&StrategyAtrRsi::onLog, this, std::placeholders::_1), "artrsi");
+	pEvent->registerHandler(EVENT_TIMER, std::bind(&StrategyAtrRsi::timer, this, std::placeholders::_1), "artrsi");
 
-	std::this_thread::sleep_for(std::chrono::seconds(20));
+	//std::this_thread::sleep_for(std::chrono::seconds(20));
 	SubscribeReq sub1;
 	sub1.symbol = "rb1701,IF1703,cu1702,al1702,zn1701,ni1703,c1703,SR703,CF701,CF703,CF707,FG612,FG703,JR701,LR701,MA701,OI701,PM707";
+	//sub1.symbol = "rb1705";
 	pctp_Gateway->subscribe(sub1);
 
 	SubscribeReq sub2;
 	sub2.symbol = "000002,000001";
+	//sub2.symbol = "000001";
 	sub2.exchange = "SZE";
 	plts_Gateway->subscribe(sub2);
 	console->info("rsi:: start");
@@ -60,7 +68,7 @@ bool StrategyAtrRsi::onStop()
 void StrategyAtrRsi::onTick(Datablk& tick)
 {
 	TickData tick_data = tick.cast<TickData>();
-	console->info("date{}:rsi:tick:{}:{}",tick_data.date, tick_data.symbol, tick_data.askPrice1);
+	console->info("date:{}:rsi:tick:{}:{}",tick_data.date, tick_data.symbol, tick_data.askPrice1);
 	rotating_log->info("date{}:rsi:tick:{}:{}", tick_data.date, tick_data.symbol, tick_data.askPrice1);
 }
 
@@ -79,6 +87,7 @@ void StrategyAtrRsi::onLog(Datablk&  log)
 	LogData log_data = log.cast<LogData>();
 
 	console->info("log{}:{}", log_data.gateWayName, log_data.logContent);
+	rotating_log->info("rsi:log:{}:{}", log_data.gateWayName, log_data.logContent);
 }
 
 void StrategyAtrRsi::timer(Datablk& tick)

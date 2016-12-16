@@ -10,7 +10,7 @@
 
 namespace cktrader {
 
-	LTSGateway::LTSGateway(EventEngine* pEvent,std::string gateWayName)
+	LTSGateway::LTSGateway(EventEngine* pEvent,std::string gateWayName):IGateway(pEvent)
 	{
 		this->m_event_service = pEvent;
 
@@ -41,95 +41,6 @@ namespace cktrader {
 		qry->close();
 		delete qry;
 		qry = nullptr;
-	}
-
-	void LTSGateway::onTick(TickData& tick)
-	{
-		Task e1;
-		e1.type = EVENT_TICK;
-		e1.task_data = tick;
-		m_event_service->put(e1);
-
-		Task e2;
-		e2.type = std::string(EVENT_TICK) + tick.tSymbol;
-		e2.task_data = tick;
-		m_event_service->put(e2);
-	}
-
-	void LTSGateway::onTrade(TradeData& trade)
-	{
-		Task e1;
-		e1.type = EVENT_TRADE;
-		e1.task_data = trade;
-		m_event_service->put(e1);
-
-		Task e2;
-		e2.type = std::string(EVENT_TRADE) + trade.tSymbol;
-		e2.task_data = trade;
-		m_event_service->put(e2);
-	}
-
-	void LTSGateway::onOrder(OrderData& order)
-	{
-		Task e1;
-		e1.type = EVENT_ORDER;
-		e1.task_data = order;
-		m_event_service->put(e1);
-
-		Task e2;
-		e2.type = std::string(EVENT_ORDER) + order.tSymbol;
-		e2.task_data = order;
-		m_event_service->put(e2);
-	}
-
-	void LTSGateway::onPosition(PositionData& position)
-	{
-		Task e1;
-		e1.type = EVENT_POSITION;
-		e1.task_data = position;
-		m_event_service->put(e1);
-
-		Task e2;
-		e2.type = std::string(EVENT_POSITION) + position.tSymbol;
-		e2.task_data = position;
-		m_event_service->put(e2);
-	}
-
-	void LTSGateway::onAccount(AccountData& account)
-	{
-		Task e1;
-		e1.type = EVENT_ACCOUNT;
-		e1.task_data = account;
-		m_event_service->put(e1);
-
-		Task e2;
-		e2.type = std::string(EVENT_ACCOUNT) + account.tAccountID;
-		e2.task_data = account;
-		m_event_service->put(e2);
-	}
-
-	void LTSGateway::onError(ErrorData& error)
-	{
-		Task e1;
-		e1.type = EVENT_ERROR;
-		e1.task_data = error;
-		m_event_service->put(e1);
-	}
-
-	void LTSGateway::onLog(LogData& log)
-	{
-		Task e1;
-		e1.type = EVENT_LOG;
-		e1.task_data = log;
-		m_event_service->put(e1);
-	}
-
-	void LTSGateway::onContract(ContractData& contract)
-	{
-		Task e1;
-		e1.type = EVENT_CONTRACT;
-		e1.task_data = contract;
-		m_event_service->put(e1);
 	}
 
 	std::string LTSGateway::getName()
@@ -170,7 +81,7 @@ namespace cktrader {
 		td->connect(userID, password, brokerID, tdAddress,productInfo,authCode);
 		qry->connect(userID, password, brokerID, tdAddress, productInfo, authCode);
 
-		m_event_service->registerHandler(EVENT_TIMER, std::bind(&LTSGateway::query, this, std::placeholders::_1));
+		m_event_service->registerHandler(EVENT_TIMER, std::bind(&LTSGateway::query, this, std::placeholders::_1), gateWayName);
 	}
 
 	void LTSGateway::subscribe(SubscribeReq& subReq)

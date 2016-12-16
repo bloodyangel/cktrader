@@ -103,7 +103,8 @@
       <Command>xcopy /r /y $(SolutionDir)Debug\LTSGateway.dll $(SolutionDir)bin
 xcopy /r /y $(SolutionDir)lib\securitymduserapi.dll $(SolutionDir)bin
 xcopy /r /y $(SolutionDir)lib\securityqueryapi.dll $(SolutionDir)bin
-xcopy /r /y $(SolutionDir)lib\securitytraderapi.dll $(SolutionDir)bin</Command>
+xcopy /r /y $(SolutionDir)lib\securitytraderapi.dll $(SolutionDir)bin
+xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -19,21 +19,21 @@ namespace cktrader {
 		reqID = 0;
 		orderRef = 0;
 
-		event_service->registerHandler(TDONFRONTCONNECTED, std::bind(&CtpTd::processFrontConnected, this, std::placeholders::_1));
-		event_service->registerHandler(TDONFRONTDISCONNECTED, std::bind(&CtpTd::processFrontDisconnected, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPUSERLOGIN, std::bind(&CtpTd::processRspUserLogin, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPUSERLOGOUT, std::bind(&CtpTd::processRspUserLogout, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPORDERINSERT, std::bind(&CtpTd::processRspOrderInsert, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPORDERACTION, std::bind(&CtpTd::processRspOrderAction, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPSETTLEMENTINFOCONFIRM, std::bind(&CtpTd::processRspSettlementInfoConfirm, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPQRYINVESTORPOSITION, std::bind(&CtpTd::processRspQryInvestorPosition, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPQRYTRADINGACCOUNT, std::bind(&CtpTd::processRspQryTradingAccount, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPQRYINSTRUMENT, std::bind(&CtpTd::processRspQryInstrument, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRSPERROR, std::bind(&CtpTd::processRspError, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRTNORDER, std::bind(&CtpTd::processRtnOrder, this, std::placeholders::_1));
-		event_service->registerHandler(TDONRTNTRADE, std::bind(&CtpTd::processRtnTrade, this, std::placeholders::_1));
-		event_service->registerHandler(TDONERRRTNORDERINSERT, std::bind(&CtpTd::processErrRtnOrderInsert, this, std::placeholders::_1));
-		event_service->registerHandler(TDONERRRTNORDERACTION, std::bind(&CtpTd::processErrRtnOrderAction, this, std::placeholders::_1));
+		event_service->registerHandler(TDONFRONTCONNECTED, std::bind(&CtpTd::processFrontConnected, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONFRONTDISCONNECTED, std::bind(&CtpTd::processFrontDisconnected, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPUSERLOGIN,std::bind(&CtpTd::processRspUserLogin, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPUSERLOGOUT,std::bind(&CtpTd::processRspUserLogout, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPORDERINSERT,std::bind(&CtpTd::processRspOrderInsert, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPORDERACTION,std::bind(&CtpTd::processRspOrderAction, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPSETTLEMENTINFOCONFIRM, std::bind(&CtpTd::processRspSettlementInfoConfirm, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPQRYINVESTORPOSITION, std::bind(&CtpTd::processRspQryInvestorPosition, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPQRYTRADINGACCOUNT,std::bind(&CtpTd::processRspQryTradingAccount, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPQRYINSTRUMENT,std::bind(&CtpTd::processRspQryInstrument, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRSPERROR, std::bind(&CtpTd::processRspError, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRTNORDER,std::bind(&CtpTd::processRtnOrder, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONRTNTRADE, std::bind(&CtpTd::processRtnTrade, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONERRRTNORDERINSERT, std::bind(&CtpTd::processErrRtnOrderInsert, this, std::placeholders::_1), "ctptd");
+		event_service->registerHandler(TDONERRRTNORDERACTION, std::bind(&CtpTd::processErrRtnOrderAction, this, std::placeholders::_1), "ctptd");
 	}
 
 	CtpTd::~CtpTd()

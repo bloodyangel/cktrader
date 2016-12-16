@@ -10,9 +10,9 @@ EventEngine::EventEngine():the_mutex_handlers(), m_active(false)
 {
 	m_task_thread_pool = nullptr;
 
-	task_queue = new ConcurrentQueue;//事件任务队列
+	task_pool = new TaskContainer;//事件任务队列
 	
-	handlers = new std::multimap<std::string, Handler>;
+	handlers = new std::multimap<std::string, Handle>;
 
 	m_timer_thread = nullptr;;//for timer
 }
@@ -21,7 +21,7 @@ EventEngine::EventEngine(EventEngine& engine):the_mutex_handlers(), m_active(fal
 {
 	m_task_thread_pool = engine.m_task_thread_pool;
 
-	task_queue = engine.task_queue;//事件任务队列
+	task_pool = engine.task_pool;//事件任务队列
 
 	handlers = engine.handlers;
 
@@ -53,10 +53,10 @@ EventEngine::~EventEngine()
 		m_timer_thread = nullptr;
 	}	
 
-	if (task_queue)
+	if (task_pool)
 	{
-		delete task_queue;
-		task_queue = nullptr;
+		delete task_pool;
+		task_pool = nullptr;
 	}
 	
 	if (handlers)
@@ -66,7 +66,25 @@ EventEngine::~EventEngine()
 	}	
 }
 
-bool EventEngine::registerHandler(std::string type, Handler f)
+//注册事件处理函数，type为事件类型，accepter是注册者标识，f是注册的处理函数
+bool EventEngine::registerHandler(std::string type, Handler f, std::string accepter)
+{
+	the_mutex_handlers.lock();
+	if (!handlers)
+	{
+		return false;
+	}
+	Handle h;
+	h.fh = f;
+	h.handle_register = accepter;
+
+	handlers->insert(std::make_pair(type,h));
+	the_mutex_handlers.unlock();
+	return true;
+}
+
+//删除accepter注册的type类型处理函数
+bool EventEngine::unRegisterHandler(std::string type, std::string accepter)
 {
 	the_mutex_handlers.lock();
 	if (!handlers)
@@ -74,35 +92,34 @@ bool EventEngine::registerHandler(std::string type, Handler f)
 		return false;
 	}
 
-	handlers->insert(std::make_pair(type, f));
-	the_mutex_handlers.unlock();
-	return true;
-}
+	std::pair <std::multimap<std::string, Handle>::iterator, std::multimap<std::string, Handle>::iterator> ret;
 
-bool EventEngine::unRegisterHandler(std::string type)
-{
-	the_mutex_handlers.lock();
-	if (!handlers)
+	ret = handlers->equal_range(type);
+	for (std::multimap<std::string, Handle>::iterator it = ret.first; it != ret.second; ++it)
 	{
-		return false;
+		if (it->second.handle_register == accepter)
+		{
+			handlers->erase(it);
+		}
 	}
 	
-	handlers->erase(type);
 	the_mutex_handlers.unlock();
 	return true;
 }
 
+//推送task
 bool EventEngine::put(Task &t)
 {
-	if (!task_queue)
+	if (!task_pool)
 	{
 		return false;
 	}
 
-	task_queue->push(t);
+	task_pool->put_task(t);
 	return true;
 }
 
+//启动引擎，简单的线程池，复用线程，并启动一个timer线程，用于产生时间信号
 bool EventEngine::startEngine()
 {
 	if (m_active || m_task_thread_pool || m_timer_thread)
@@ -128,6 +145,7 @@ bool EventEngine::startEngine()
 	return true;
 }
 
+//停止事件引擎
 bool EventEngine::stopEngine()
 {
 	if (!m_active || !m_task_thread_pool || !m_timer_thread)
@@ -160,15 +178,16 @@ bool EventEngine::stopEngine()
 	return true;
 }
 
+//事件引擎的处理函数，用于读取task，并调用事件处理函数
 void EventEngine::processTask()
 {
 	while (m_active)
 	{
 		Task task;
 
-		task = task_queue->wait_and_pop();
+		task = task_pool->wait_and_get_task();
 
-		if (task.type == EVENT_HANDLER)
+		if (task.handle_flag)
 		{
 			FuncData func;
 
@@ -177,34 +196,44 @@ void EventEngine::processTask()
 				func = task.task_data.cast<FuncData>();
 				func.h(func.arg);
 			}
-			catch (std::exception& bc)
+			catch (...)
 			{
 
 			}
+
 		}else
 		{
-			std::pair <std::multimap<std::string, Handler>::iterator, std::multimap<std::string, Handler>::iterator> ret;
+			//找到事件对应的处理函数,多线程注册是否有问题？
+			std::pair <std::multimap<std::string, Handle>::iterator, std::multimap<std::string, Handle>::iterator> ret;
 			the_mutex_handlers.lock();
 			ret = handlers->equal_range(task.type);
 			the_mutex_handlers.unlock();
 
-			for (std::multimap<std::string, Handler>::iterator it = ret.first; it != ret.second; ++it)
+			//分发任务，插入优先级高的队列，事件类型的生成尽量散开，这样防止线程等待
+			//事件类型一般为：事件类型+task类型+处理者
+			for (std::multimap<std::string, Handle>::iterator it = ret.first; it != ret.second; ++it)
 			{
 				FuncData func;
-				func.h = it->second;
+				func.h = it->second.fh;
 				func.arg = task.task_data;
 
+				//生成函数处理事件，这样同一个事件类型有过个处理函数的时候，可以快速被调用
 				Task handlerTask;
 				handlerTask.task_priority = Task::high;
-				handlerTask.type = EVENT_HANDLER;
+				handlerTask.type = task.type+it->second.handle_register;
+				handlerTask.handle_flag = true;
 				handlerTask.task_data = func;
 				put(handlerTask);
 			}//for			
 		}//else
+
+		//通知下一个线程可以处理事件了，这样保证一个事件类型在同一时间只能处理一个合约
+		task_pool->task_run_end(task.type);
 		
 	}//while
 }
 
+//timer线程，产生时间信号
 void EventEngine::trigerTimer()
 {
 	while (m_active)

@@ -17,7 +17,7 @@ int main()
 	EventEngine envet;
 	envet.startEngine();
 	std::cout << "register" << std::endl;
-	envet.registerHandler(EVENT_TIMER, std::bind(timer,std::placeholders::_1));
+	envet.registerHandler(EVENT_TIMER, "test",std::bind(timer,std::placeholders::_1));
 	getchar();
     return 0;
 }
