@@ -8,8 +8,8 @@ TaskContainer::TaskContainer()
 {
 	task_map = new CKMap;
 
-	task_type_queue_high = new BlockingConcurrentQueue<std::string>;
-	task_type_queue_normal= new BlockingConcurrentQueue<std::string>;
+	task_handler_queue = new ConcurrentQueue<std::string>;
+	task_type_queue = new BlockingConcurrentQueue<std::string>;
 }
 
 TaskContainer::~TaskContainer()
@@ -22,36 +22,35 @@ TaskContainer::~TaskContainer()
 
 	delete task_map;
 
-	delete task_type_queue_high;
-	delete task_type_queue_normal;
+	delete task_handler_queue;
+	delete task_type_queue;
 }
 
 Task TaskContainer::wait_and_get_task()
 {
-	bool ret = false;
 	Task t;
 
-	while (!ret)
-	{
-		std::string type = read_task_type_queue();
-		if (type != "")
-		{
-			MapItem* item = read_task_map(type);
-			if (item)
-			{
-				ret = item->read(t);
-			}
-		}
-	}
+	//取消循环，这里是否有问题？如果item读取不成功，t是什么？
+	std::string type = read_task_queue();
 
+	MapItem* item = read_task_map(type);
+	if (item)
+	{
+		item->read(t);
+	}
 	return t;
 }
 
 void TaskContainer::put_task(Task& data)
 {	
 	write_task_map(data);
+	task_type_queue->enqueue(data.type);
+}
 
-	write_task_type_queue(data);
+void TaskContainer::put_handler_task(Task& data)
+{
+	write_task_map(data);
+	task_handler_queue->enqueue(data.type);
 }
 
 void TaskContainer::task_run_end(std::string task_type)
@@ -59,53 +58,35 @@ void TaskContainer::task_run_end(std::string task_type)
 	(*task_map)[task_type]->free_run_lock();
 }
 
-std::string TaskContainer::read_task_type_queue()
+std::string TaskContainer::read_task_queue()
 {
 	//等待队列有数据??
 	std::string type;
 
-	if (task_type_queue_high->size_approx() != 0)
+	if (task_handler_queue->try_dequeue(type))
 	{
-		task_type_queue_high->wait_dequeue(type);
-
 		return type;
 	}
-	else
-	{
-		task_type_queue_normal->wait_dequeue(type);
 
-		return type;
-	}
-}
-void TaskContainer::write_task_type_queue(Task& data)
-{
-	//把事件类型放到队列里面，等着线程取出处理
-	if (data.task_priority == Task::high)
-	{
-		task_type_queue_high->enqueue(data.type);
-	}
-	else
-	{
-		task_type_queue_normal->enqueue(data.type);
-	}
+	task_type_queue->wait_dequeue(type);
+	return type;
 }
 
 void TaskContainer::write_task_map(Task& data)
 {
 	CKMap::const_iterator it;
-
 	it = task_map->find(data.type);
 
-	if (it == task_map->end())
+	if (it != task_map->end())
+	{
+		MapItem* item = (*task_map)[data.type];
+		item->write(data);		
+	}
+	else
 	{
 		MapItem* item = new MapItem();
 		item->write(data);
 		task_map->insert(std::make_pair(data.type, item));
-	}
-	else
-	{
-		MapItem* item = (*task_map)[data.type];	
-		item->write(data);
 	}
 }
 MapItem* TaskContainer::read_task_map(std::string type)
@@ -118,7 +99,6 @@ MapItem* TaskContainer::read_task_map(std::string type)
 	{
 		item = it->second;
 	}
-	//释放权限
 	return item;
 }
 

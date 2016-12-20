@@ -112,4 +112,15 @@
 #define EXCHANGE_NONE ""         // 空交易所
 #define EXCHANGE_HKEX "HKEX"   //港交所
 
+#define EXCHANGE_SMART "SMART"	// IB智能路由（股票、期权）
+#define EXCHANGE_NYMEX "NYMEX" //       # IB 期货
+#define EXCHANGE_GLOBEX "GLOBEX" //     # CME电子交易平台
+#define EXCHANGE_IDEALPRO "IDEALPRO"  // # IB外汇ECN
+
+// 货币类型
+#define CURRENCY_USD "USD"            //美元
+#define CURRENCY_CNY "CNY"            // 人民币
+#define CURRENCY_UNKNOWN "UNKNOWN"    // 未知货币
+#define CURRENCY_NONE ""              // 空货币
+
 #endif

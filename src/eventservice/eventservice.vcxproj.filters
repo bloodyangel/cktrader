@@ -27,9 +27,6 @@
     <ClInclude Include="..\..\include\eventservice\blockingconcurrentqueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\eventservice\concurrentqueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\eventservice\fcmm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

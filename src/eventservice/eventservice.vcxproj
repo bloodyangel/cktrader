@@ -149,7 +149,6 @@ xcopy /r /y $(SolutionDir)Debug\eventservice.lib $(SolutionDir)lib</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\eventservice\blockingconcurrentqueue.h" />
-    <ClInclude Include="..\..\include\eventservice\concurrentqueue.h" />
     <ClInclude Include="..\..\include\eventservice\eventengine.h" />
     <ClInclude Include="..\..\include\eventservice\fcmm.hpp" />
     <ClInclude Include="..\..\include\eventservice\MapItem.h" />

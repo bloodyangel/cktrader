@@ -11,13 +11,6 @@
 
 struct CK_EXPORTS Task
 {
-	enum Priority
-	{
-		high = 3,
-		normal = 2,
-	};
-
-	Priority task_priority = Priority::normal;
 	std::string type;        //事件类型
 	bool handle_flag = false;		//当前事件是否为handler事件
 	Datablk task_data;		//数据结构体
@@ -131,8 +124,8 @@ struct CK_EXPORTS OrderData
 	std::string direction;
 	std::string offset;
 	double price;
-	int totalVolume;
-	int tradedVolume;
+	double totalVolume;
+	double tradedVolume;
 	std::string status;
 	std::string orderTime;
 	std::string cancelTime;
@@ -152,7 +145,7 @@ struct CK_EXPORTS TradeData
 	std::string direction;
 	std::string offset;
 	double price;
-	int volume;
+	double volume;
 	std::string tradeTime;
 	std::string tTradeID;
 	std::string tOrderID;
@@ -166,7 +159,7 @@ struct CK_EXPORTS PositionData
 	std::string exchange;
 	std::string tSymbol;
 	std::string direction;
-	int position;
+	double position;
 	int frozen;
 	double price;
 	std::string tPositionName;

@@ -200,14 +200,11 @@ void EventEngine::processTask()
 			{
 
 			}
-
 		}else
 		{
 			//找到事件对应的处理函数,多线程注册是否有问题？
 			std::pair <std::multimap<std::string, Handle>::iterator, std::multimap<std::string, Handle>::iterator> ret;
-			the_mutex_handlers.lock();
-			ret = handlers->equal_range(task.type);
-			the_mutex_handlers.unlock();
+			ret = handlers->equal_range(task.type);	
 
 			//分发任务，插入优先级高的队列，事件类型的生成尽量散开，这样防止线程等待
 			//事件类型一般为：事件类型+task类型+处理者
@@ -219,11 +216,10 @@ void EventEngine::processTask()
 
 				//生成函数处理事件，这样同一个事件类型有过个处理函数的时候，可以快速被调用
 				Task handlerTask;
-				handlerTask.task_priority = Task::high;
 				handlerTask.type = task.type+it->second.handle_register;
 				handlerTask.handle_flag = true;
 				handlerTask.task_data = func;
-				put(handlerTask);
+				task_pool->put_handler_task(handlerTask);
 			}//for			
 		}//else
 

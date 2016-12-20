@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)src\gateway\IBGateway\include\windows\client;$(SolutionDir)src\gateway\IBGateway\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -87,12 +89,18 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;IBGATEWAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CKAPI_EXPORTS;_USRDLL;IBGATEWAY_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>eventservice.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /r /y $(ProjectDir)ib_setting.json $(SolutionDir)bin
+xcopy /r /y $(SolutionDir)Debug\IBGateway.dll $(SolutionDir)bin
+xcopy /r /y $(SolutionDir)Debug\IBGateway.lib $(SolutionDir)lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -142,6 +150,83 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\utils\ckdef.h" />
+    <ClInclude Include="..\..\..\include\utils\cktypes.h" />
+    <ClInclude Include="..\..\..\include\utils\datablk.h" />
+    <ClInclude Include="..\..\..\include\utils\json11.hpp" />
+    <ClInclude Include="include\IBApi.h" />
+    <ClInclude Include="include\ibdef.h" />
+    <ClInclude Include="include\IBGateway.h" />
+    <ClInclude Include="include\IbWrapper.h" />
+    <ClInclude Include="include\windows\client\CommissionReport.h" />
+    <ClInclude Include="include\windows\client\CommonDefs.h" />
+    <ClInclude Include="include\windows\client\Contract.h" />
+    <ClInclude Include="include\windows\client\ContractCondition.h" />
+    <ClInclude Include="include\windows\client\DefaultEWrapper.h" />
+    <ClInclude Include="include\windows\client\EClient.h" />
+    <ClInclude Include="include\windows\client\EClientMsgSink.h" />
+    <ClInclude Include="include\windows\client\EClientSocket.h" />
+    <ClInclude Include="include\windows\client\EDecoder.h" />
+    <ClInclude Include="include\windows\client\EMessage.h" />
+    <ClInclude Include="include\windows\client\EMutex.h" />
+    <ClInclude Include="include\windows\client\EPosixClientSocketPlatform.h" />
+    <ClInclude Include="include\windows\client\EReader.h" />
+    <ClInclude Include="include\windows\client\EReaderOSSignal.h" />
+    <ClInclude Include="include\windows\client\EReaderSignal.h" />
+    <ClInclude Include="include\windows\client\EReaderWMSignal.h" />
+    <ClInclude Include="include\windows\client\ESocket.h" />
+    <ClInclude Include="include\windows\client\ETransport.h" />
+    <ClInclude Include="include\windows\client\EWrapper.h" />
+    <ClInclude Include="include\windows\client\Execution.h" />
+    <ClInclude Include="include\windows\client\executioncondition.h" />
+    <ClInclude Include="include\windows\client\IExternalizable.h" />
+    <ClInclude Include="include\windows\client\MarginCondition.h" />
+    <ClInclude Include="include\windows\client\OperatorCondition.h" />
+    <ClInclude Include="include\windows\client\Order.h" />
+    <ClInclude Include="include\windows\client\OrderCondition.h" />
+    <ClInclude Include="include\windows\client\OrderState.h" />
+    <ClInclude Include="include\windows\client\PercentChangeCondition.h" />
+    <ClInclude Include="include\windows\client\PriceCondition.h" />
+    <ClInclude Include="include\windows\client\Resource.h" />
+    <ClInclude Include="include\windows\client\ScannerSubscription.h" />
+    <ClInclude Include="include\windows\client\shared_ptr.h" />
+    <ClInclude Include="include\windows\client\SoftDollarTier.h" />
+    <ClInclude Include="include\windows\client\StdAfx.h" />
+    <ClInclude Include="include\windows\client\TagValue.h" />
+    <ClInclude Include="include\windows\client\TimeCondition.h" />
+    <ClInclude Include="include\windows\client\TwsSocketClientErrors.h" />
+    <ClInclude Include="include\windows\client\VolumeCondition.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\include\utils\json11.cpp" />
+    <ClCompile Include="include\windows\client\ContractCondition.cpp" />
+    <ClCompile Include="include\windows\client\DefaultEWrapper.cpp" />
+    <ClCompile Include="include\windows\client\EClient.cpp" />
+    <ClCompile Include="include\windows\client\EClientSocket.cpp" />
+    <ClCompile Include="include\windows\client\EDecoder.cpp" />
+    <ClCompile Include="include\windows\client\EMessage.cpp" />
+    <ClCompile Include="include\windows\client\EMutex.cpp" />
+    <ClCompile Include="include\windows\client\EReader.cpp" />
+    <ClCompile Include="include\windows\client\EReaderOSSignal.cpp" />
+    <ClCompile Include="include\windows\client\EReaderWMSignal.cpp" />
+    <ClCompile Include="include\windows\client\ESocket.cpp" />
+    <ClCompile Include="include\windows\client\executioncondition.cpp" />
+    <ClCompile Include="include\windows\client\MarginCondition.cpp" />
+    <ClCompile Include="include\windows\client\OperatorCondition.cpp" />
+    <ClCompile Include="include\windows\client\OrderCondition.cpp" />
+    <ClCompile Include="include\windows\client\PercentChangeCondition.cpp" />
+    <ClCompile Include="include\windows\client\PriceCondition.cpp" />
+    <ClCompile Include="include\windows\client\SoftDollarTier.cpp" />
+    <ClCompile Include="include\windows\client\StdAfx.cpp" />
+    <ClCompile Include="include\windows\client\TimeCondition.cpp" />
+    <ClCompile Include="include\windows\client\VolumeCondition.cpp" />
+    <ClCompile Include="src\IBApi.cpp" />
+    <ClCompile Include="src\IBGateway.cpp" />
+    <ClCompile Include="src\IBGateway_iml.cpp" />
+    <ClCompile Include="src\IbWrapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ib_setting.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

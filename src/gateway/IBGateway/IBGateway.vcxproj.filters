@@ -13,5 +13,236 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\ib">
+      <UniqueIdentifier>{2079f038-7cd4-4f4f-8efd-88e66cb4e112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ib">
+      <UniqueIdentifier>{7ad5c580-bb97-4c2c-bbc3-8d14695298cb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\IbWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\utils\ckdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\utils\cktypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\utils\datablk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\CommissionReport.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\CommonDefs.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\Contract.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\ContractCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\DefaultEWrapper.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EClient.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EClientMsgSink.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EClientSocket.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EMessage.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EReader.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EPosixClientSocketPlatform.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EReaderOSSignal.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EMutex.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EReaderSignal.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EDecoder.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EReaderWMSignal.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\ETransport.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\EWrapper.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\IExternalizable.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBApi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\utils\json11.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\ESocket.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\Execution.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\executioncondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\MarginCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\PriceCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\Resource.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\OrderState.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\ScannerSubscription.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\PercentChangeCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\shared_ptr.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\Order.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\OperatorCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\OrderCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\SoftDollarTier.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\TagValue.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\TimeCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\TwsSocketClientErrors.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\VolumeCondition.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBGateway.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\client\StdAfx.h">
+      <Filter>Header Files\ib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\IbWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBApi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBGateway_iml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBGateway.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\ContractCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\DefaultEWrapper.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EClient.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EClientSocket.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EDecoder.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EMessage.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EMutex.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EReader.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EReaderOSSignal.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\ESocket.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\EReaderWMSignal.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\executioncondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\MarginCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\OperatorCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\StdAfx.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\PercentChangeCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\PriceCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\SoftDollarTier.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\OrderCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\TimeCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\windows\client\VolumeCondition.cpp">
+      <Filter>Source Files\ib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\utils\json11.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ib_setting.json">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

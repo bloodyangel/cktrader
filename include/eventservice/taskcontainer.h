@@ -40,21 +40,22 @@ private:
 	//装任务类型对应的map,key为任务类型
 	CKMap *task_map;
 
-	BlockingConcurrentQueue<std::string> *task_type_queue_high;
-	BlockingConcurrentQueue<std::string> *task_type_queue_normal;
+	ConcurrentQueue<std::string> *task_handler_queue;
+	BlockingConcurrentQueue<std::string> *task_type_queue;
 
 public:
 	TaskContainer();
 	~TaskContainer();
+
 	Task wait_and_get_task();
 	void put_task(Task& data);
+	void put_handler_task(Task& data);
 
 	//当前task处理完成后，释放一个事件只能有一个线程处理的锁
 	void task_run_end(std::string task_type);
 
 protected:
-	std::string read_task_type_queue();
-	void write_task_type_queue(Task& data);
+	std::string read_task_queue();
 
 	void write_task_map(Task& data);
 	MapItem* read_task_map(std::string type);
