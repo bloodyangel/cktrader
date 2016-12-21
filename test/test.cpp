@@ -16,9 +16,18 @@ void on_log(Datablk& log)
 int main()
 {
 	ServiceMgr mgr;
+
+#ifdef _DEBUG
+	IGateway* ctp_gate = mgr.loadGateWay("ctp", "CTPGateway-D.dll");
+	IGateway* lts_gate = mgr.loadGateWay("lts", "LTSGateway-D.dll");
+	IGateway* ib_gate = mgr.loadGateWay("ib", "IBGateway-D.dll");
+#else
 	IGateway* ctp_gate = mgr.loadGateWay("ctp", "CTPGateway.dll");
 	IGateway* lts_gate = mgr.loadGateWay("lts", "LTSGateway.dll");
-	if (!ctp_gate||!lts_gate)
+	IGateway* ib_gate = mgr.loadGateWay("ib", "IBGateway.dll");
+#endif
+
+	if (!ctp_gate||!lts_gate||!ib_gate)
 	{
 		std::cout << "loading gateway failed" << std::endl;
 		return -1;
@@ -31,7 +40,11 @@ int main()
 
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 
-	IStrategy* rsk = mgr.loadStrategy("artris","strategyAtrRsi.dll");
+#ifdef _DEBUG
+	IStrategy* rsk = mgr.loadStrategy("artris","strategyAtrRsi-D.dll");
+#else
+	IStrategy* rsk = mgr.loadStrategy("artris", "strategyAtrRsi.dll");
+#endif
 	if (!rsk)
 	{
 		std::cout << "loading strategy failed" << std::endl;

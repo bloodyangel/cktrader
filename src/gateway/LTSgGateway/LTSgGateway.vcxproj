@@ -73,7 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)include;$(SolutionDir)src\gateway\LTSgGateway\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\debug;$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)-D</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -82,6 +83,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)include;$(SolutionDir)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)lib\release;$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,14 +100,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>securitymduserapi.lib;securityqueryapi.lib;securitytraderapi.lib;eventservice.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>securitymduserapi.lib;securityqueryapi.lib;securitytraderapi.lib;eventservice-D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /r /y $(SolutionDir)Debug\LTSGateway.dll $(SolutionDir)bin
-xcopy /r /y $(SolutionDir)lib\securitymduserapi.dll $(SolutionDir)bin
-xcopy /r /y $(SolutionDir)lib\securityqueryapi.dll $(SolutionDir)bin
-xcopy /r /y $(SolutionDir)lib\securitytraderapi.dll $(SolutionDir)bin
-xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin</Command>
+      <Command>xcopy /r /y $(SolutionDir)Debug\$(ProjectName)-D.dll $(SolutionDir)bin\debug
+xcopy /r /y $(SolutionDir)lib\securitymduserapi.dll $(SolutionDir)bin\debug
+xcopy /r /y $(SolutionDir)lib\securityqueryapi.dll $(SolutionDir)bin\debug
+xcopy /r /y $(SolutionDir)lib\securitytraderapi.dll $(SolutionDir)bin\debug
+xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin\debug</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,14 +132,23 @@ xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LTSGGATEWAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LTSGGATEWAY_EXPORTS;CKAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>eventservice.lib;securitymduserapi.lib;securityqueryapi.lib;securitytraderapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /r /y $(SolutionDir)Release\$(ProjectName).dll $(SolutionDir)bin\release
+xcopy /r /y $(SolutionDir)lib\securitymduserapi.dll $(SolutionDir)bin\release
+xcopy /r /y $(SolutionDir)lib\securityqueryapi.dll $(SolutionDir)bin\release
+xcopy /r /y $(SolutionDir)lib\securitytraderapi.dll $(SolutionDir)bin\release
+xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin\release</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,6 +165,7 @@ xcopy /r /y $(ProjectDir)lts_setting.json $(SolutionDir)bin</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
